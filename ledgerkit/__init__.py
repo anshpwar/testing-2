@@ -1,0 +1,1 @@
+"""Ledgerhub: shared domain library."""
