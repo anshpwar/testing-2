@@ -1,0 +1,21 @@
+{
+  "generated_by": "tools/gen_manifest.py",
+  "rules": {
+    "aml_review_threshold_cents": "13ba7544e392",
+    "chargeback_window_days": "48c3a190798a",
+    "daily_transfer_limit_cents": "8bd1c4d7184f",
+    "dormancy_days": "dc61d49e89d8",
+    "failed_login_lockout_s": "3fb305fcc9f4",
+    "fx_markup_bp": "bbe44e6592eb",
+    "instant_payment_cap_cents": "445c54db8efd",
+    "interest_rate_bp": "a082cd35d5d1",
+    "loan_origination_fee_bp": "a3b9456bb02b",
+    "monthly_account_fee_cents": "77feb9f32fb8",
+    "overdraft_limit_cents": "b9c5879ebdc0",
+    "reserve_ratio_bp": "2bd5395c9c2b",
+    "rounding_step_cents": "7f1ffd54b7d9",
+    "settlement_delay_hours": "a45654ce1e01",
+    "statement_page_size": "71b84380fdc7",
+    "wire_fee_cents": "8a32a989de7a"
+  }
+}
