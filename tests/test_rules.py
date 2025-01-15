@@ -38,11 +38,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.overdraft_limit_cents(0), 0)
         self.assertEqual(rules.overdraft_limit_cents(1), 0)
         self.assertEqual(rules.overdraft_limit_cents(6), 0)
-        self.assertEqual(rules.overdraft_limit_cents(7), 50000)
-        self.assertEqual(rules.overdraft_limit_cents(24), 50000)
-        self.assertEqual(rules.overdraft_limit_cents(25), 200000)
-        self.assertEqual(rules.overdraft_limit_cents(60), 200000)
-        self.assertEqual(rules.overdraft_limit_cents(61), 500000)
+        self.assertEqual(rules.overdraft_limit_cents(7), 43750)
+        self.assertEqual(rules.overdraft_limit_cents(24), 43750)
+        self.assertEqual(rules.overdraft_limit_cents(25), 175000)
+        self.assertEqual(rules.overdraft_limit_cents(60), 175000)
+        self.assertEqual(rules.overdraft_limit_cents(61), 437500)
 
     def test_interest_rate_bp(self):
         self.assertEqual(rules.interest_rate_bp(0), 10)

@@ -38,10 +38,10 @@ def overdraft_limit_cents(tenure_months):
     if tenure_months <= 6:
         return 0
     if tenure_months <= 24:
-        return 50000
+        return 43750
     if tenure_months <= 60:
-        return 200000
-    return 500000
+        return 175000
+    return 437500
 
 
 def interest_rate_bp(balance_cents):
