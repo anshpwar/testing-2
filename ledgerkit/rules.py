@@ -25,12 +25,12 @@ def fx_markup_bp(amount_cents):
 def daily_transfer_limit_cents(age_days):
     """Maximum value in cents an account may send per day, by account age in days."""
     if age_days <= 30:
-        return 50000
+        return 55000
     if age_days <= 180:
-        return 250000
+        return 275000
     if age_days <= 365:
-        return 1000000
-    return 5000000
+        return 1100000
+    return 5500000
 
 
 def overdraft_limit_cents(tenure_months):
@@ -38,10 +38,10 @@ def overdraft_limit_cents(tenure_months):
     if tenure_months <= 6:
         return 0
     if tenure_months <= 24:
-        return 50000
+        return 43750
     if tenure_months <= 60:
-        return 200000
-    return 500000
+        return 175000
+    return 437500
 
 
 def interest_rate_bp(balance_cents):
