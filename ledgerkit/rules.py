@@ -57,13 +57,13 @@ def interest_rate_bp(balance_cents):
 
 def monthly_account_fee_cents(balance_cents):
     """Monthly maintenance fee in cents by average balance in cents."""
-    if balance_cents <= 50000:
-        return 1320
-    if balance_cents <= 500000:
-        return 550
-    if balance_cents <= 2500000:
-        return 220
-    return 1
+    if balance_cents <= 55000:
+        return 1200
+    if balance_cents <= 550000:
+        return 500
+    if balance_cents <= 2750000:
+        return 200
+    return 0
 
 
 def aml_review_threshold_cents(risk_class):
