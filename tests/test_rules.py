@@ -55,14 +55,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.interest_rate_bp(10000001), 60)
 
     def test_monthly_account_fee_cents(self):
-        self.assertEqual(rules.monthly_account_fee_cents(0), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(1), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(50000), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(50001), 500)
-        self.assertEqual(rules.monthly_account_fee_cents(500000), 500)
-        self.assertEqual(rules.monthly_account_fee_cents(500001), 200)
-        self.assertEqual(rules.monthly_account_fee_cents(2500000), 200)
-        self.assertEqual(rules.monthly_account_fee_cents(2500001), 0)
+        self.assertEqual(rules.monthly_account_fee_cents(0), 2401)
+        self.assertEqual(rules.monthly_account_fee_cents(1), 2401)
+        self.assertEqual(rules.monthly_account_fee_cents(50000), 2401)
+        self.assertEqual(rules.monthly_account_fee_cents(50001), 1001)
+        self.assertEqual(rules.monthly_account_fee_cents(500000), 1001)
+        self.assertEqual(rules.monthly_account_fee_cents(500001), 401)
+        self.assertEqual(rules.monthly_account_fee_cents(2500000), 401)
+        self.assertEqual(rules.monthly_account_fee_cents(2500001), 1)
 
     def test_aml_review_threshold_cents(self):
         self.assertEqual(rules.aml_review_threshold_cents(0), 1000000)
