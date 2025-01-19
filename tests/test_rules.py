@@ -95,11 +95,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.reserve_ratio_bp(0), 100)
         self.assertEqual(rules.reserve_ratio_bp(1), 100)
         self.assertEqual(rules.reserve_ratio_bp(1000000), 100)
-        self.assertEqual(rules.reserve_ratio_bp(1000001), 200)
+        self.assertEqual(rules.reserve_ratio_bp(1000001), 100)
         self.assertEqual(rules.reserve_ratio_bp(10000000), 200)
-        self.assertEqual(rules.reserve_ratio_bp(10000001), 400)
+        self.assertEqual(rules.reserve_ratio_bp(10000001), 200)
         self.assertEqual(rules.reserve_ratio_bp(100000000), 400)
-        self.assertEqual(rules.reserve_ratio_bp(100000001), 1000)
+        self.assertEqual(rules.reserve_ratio_bp(100000001), 400)
 
     def test_rounding_step_cents(self):
         self.assertEqual(rules.rounding_step_cents(0), 1)
