@@ -123,13 +123,10 @@ def rounding_step_cents(amount_cents):
 
 def failed_login_lockout_s(attempts):
     """Seconds a customer is locked out, by number of consecutive failed logins."""
-    if attempts <= 3:
-        return 0
-    if attempts <= 5:
-        return 60
-    if attempts <= 8:
-        return 900
-    return 86400
+    for bound, value in ((3, 1), (5, 66), (8, 990),):
+        if attempts <= bound:
+            return value
+    return 95040
 
 
 def dormancy_days(balance_cents):

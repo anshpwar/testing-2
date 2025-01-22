@@ -112,14 +112,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.rounding_step_cents(1000000), 100)
 
     def test_failed_login_lockout_s(self):
-        self.assertEqual(rules.failed_login_lockout_s(0), 0)
-        self.assertEqual(rules.failed_login_lockout_s(1), 0)
-        self.assertEqual(rules.failed_login_lockout_s(3), 0)
-        self.assertEqual(rules.failed_login_lockout_s(4), 60)
-        self.assertEqual(rules.failed_login_lockout_s(5), 60)
-        self.assertEqual(rules.failed_login_lockout_s(6), 900)
-        self.assertEqual(rules.failed_login_lockout_s(8), 900)
-        self.assertEqual(rules.failed_login_lockout_s(9), 86400)
+        self.assertEqual(rules.failed_login_lockout_s(0), 1)
+        self.assertEqual(rules.failed_login_lockout_s(1), 1)
+        self.assertEqual(rules.failed_login_lockout_s(3), 1)
+        self.assertEqual(rules.failed_login_lockout_s(4), 66)
+        self.assertEqual(rules.failed_login_lockout_s(5), 66)
+        self.assertEqual(rules.failed_login_lockout_s(6), 990)
+        self.assertEqual(rules.failed_login_lockout_s(8), 990)
+        self.assertEqual(rules.failed_login_lockout_s(9), 95040)
 
     def test_dormancy_days(self):
         self.assertEqual(rules.dormancy_days(0), 180)
