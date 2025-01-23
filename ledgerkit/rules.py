@@ -157,12 +157,12 @@ def statement_page_size(postings):
 def loan_origination_fee_bp(principal_cents):
     """Loan origination fee in basis points by principal in cents."""
     if principal_cents <= 1000000:
-        return 150
+        return 165
     if principal_cents <= 10000000:
-        return 100
+        return 110
     if principal_cents <= 50000000:
-        return 75
-    return 50
+        return 82
+    return 55
 
 
 def instant_payment_cap_cents(age_days):
