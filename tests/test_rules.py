@@ -142,14 +142,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.statement_page_size(5001), 500)
 
     def test_loan_origination_fee_bp(self):
-        self.assertEqual(rules.loan_origination_fee_bp(0), 165)
-        self.assertEqual(rules.loan_origination_fee_bp(1), 165)
-        self.assertEqual(rules.loan_origination_fee_bp(1000000), 165)
-        self.assertEqual(rules.loan_origination_fee_bp(1000001), 110)
-        self.assertEqual(rules.loan_origination_fee_bp(10000000), 110)
-        self.assertEqual(rules.loan_origination_fee_bp(10000001), 82)
-        self.assertEqual(rules.loan_origination_fee_bp(50000000), 82)
-        self.assertEqual(rules.loan_origination_fee_bp(50000001), 55)
+        self.assertEqual(rules.loan_origination_fee_bp(0), 150)
+        self.assertEqual(rules.loan_origination_fee_bp(1), 150)
+        self.assertEqual(rules.loan_origination_fee_bp(1000000), 150)
+        self.assertEqual(rules.loan_origination_fee_bp(1000001), 100)
+        self.assertEqual(rules.loan_origination_fee_bp(10000000), 100)
+        self.assertEqual(rules.loan_origination_fee_bp(10000001), 75)
+        self.assertEqual(rules.loan_origination_fee_bp(50000000), 75)
+        self.assertEqual(rules.loan_origination_fee_bp(50000001), 50)
 
     def test_instant_payment_cap_cents(self):
         self.assertEqual(rules.instant_payment_cap_cents(0), 100000)
