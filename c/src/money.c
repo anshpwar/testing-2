@@ -158,10 +158,13 @@ int lk_money_convert(const lk_money *a, int64_t rate_micro, const char *to_curre
     return lk_money_make(out, result, to_exponent, to_currency);
 }
 
-int64_t lk_fee_minor(int64_t minor, int32_t bp) {
+int64_t lk_fee_minor(int64_t minor, int32_t mode, int32_t bp) {
     int64_t scaled;
     int64_t fee;
     int rc;
+    if (mode < LK_ROUND_HALF_UP || mode > LK_ROUND_UP) {
+        return LK_ERR_MODE;
+    }
     if (minor < 0 || bp < 0) {
         return LK_ERR_ARG;
     }
@@ -169,6 +172,6 @@ int64_t lk_fee_minor(int64_t minor, int32_t bp) {
     if (rc != LK_OK) {
         return rc;
     }
-    rc = lk_round_div(scaled, 10000, LK_ROUND_HALF_UP, &fee);
+    rc = lk_round_div(scaled, 10000, mode, &fee);
     return rc != LK_OK ? rc : fee;
 }

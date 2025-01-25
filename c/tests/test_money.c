@@ -86,10 +86,12 @@ int main(void) {
     CHECK_EQ(lk_money_convert(&big, 2000000, "USD", 2, LK_ROUND_DOWN, &out), LK_ERR_OVERFLOW);
 
     /* proportional fee helper */
-    CHECK_EQ(lk_fee_minor(10000, 250), 250);
-    CHECK_EQ(lk_fee_minor(1999, 150), 30);
-    CHECK_EQ(lk_fee_minor(-1, 150), LK_ERR_ARG);
-    CHECK_EQ(lk_fee_minor(INT64_MAX, 2), LK_ERR_OVERFLOW);
+    CHECK_EQ(lk_fee_minor(10000, LK_ROUND_HALF_UP, 250), 250);
+    CHECK_EQ(lk_fee_minor(1999, LK_ROUND_HALF_UP, 150), 30);
+    CHECK_EQ(lk_fee_minor(1999, LK_ROUND_DOWN, 150), 29);
+    CHECK_EQ(lk_fee_minor(1999, 42, 150), LK_ERR_MODE);
+    CHECK_EQ(lk_fee_minor(-1, LK_ROUND_HALF_UP, 150), LK_ERR_ARG);
+    CHECK_EQ(lk_fee_minor(INT64_MAX, LK_ROUND_HALF_UP, 2), LK_ERR_OVERFLOW);
 
     CHECK_DONE();
 }
