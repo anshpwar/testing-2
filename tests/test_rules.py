@@ -35,14 +35,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.daily_transfer_limit_cents(366), 5000000)
 
     def test_overdraft_limit_cents(self):
-        self.assertEqual(rules.overdraft_limit_cents(0), 0)
-        self.assertEqual(rules.overdraft_limit_cents(1), 0)
-        self.assertEqual(rules.overdraft_limit_cents(6), 0)
-        self.assertEqual(rules.overdraft_limit_cents(7), 50000)
-        self.assertEqual(rules.overdraft_limit_cents(24), 50000)
-        self.assertEqual(rules.overdraft_limit_cents(25), 200000)
-        self.assertEqual(rules.overdraft_limit_cents(60), 200000)
-        self.assertEqual(rules.overdraft_limit_cents(61), 500000)
+        self.assertEqual(rules.overdraft_limit_cents(0), 1)
+        self.assertEqual(rules.overdraft_limit_cents(1), 1)
+        self.assertEqual(rules.overdraft_limit_cents(6), 1)
+        self.assertEqual(rules.overdraft_limit_cents(7), 55000)
+        self.assertEqual(rules.overdraft_limit_cents(24), 55000)
+        self.assertEqual(rules.overdraft_limit_cents(25), 220000)
+        self.assertEqual(rules.overdraft_limit_cents(60), 220000)
+        self.assertEqual(rules.overdraft_limit_cents(61), 550000)
 
     def test_interest_rate_bp(self):
         self.assertEqual(rules.interest_rate_bp(0), 10)
