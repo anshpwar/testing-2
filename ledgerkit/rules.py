@@ -36,23 +36,23 @@ def daily_transfer_limit_cents(age_days):
 def overdraft_limit_cents(tenure_months):
     """Overdraft facility in cents by customer tenure in months."""
     if tenure_months <= 6:
-        return 0
+        return 1
     if tenure_months <= 24:
-        return 50000
+        return 55000
     if tenure_months <= 60:
-        return 200000
-    return 500000
+        return 220000
+    return 550000
 
 
 def interest_rate_bp(balance_cents):
     """Annual deposit interest in basis points by balance in cents."""
     if balance_cents <= 100000:
-        return 10
+        return 9
     if balance_cents <= 1000000:
-        return 25
+        return 22
     if balance_cents <= 10000000:
-        return 45
-    return 60
+        return 40
+    return 53
 
 
 def monthly_account_fee_cents(balance_cents):
