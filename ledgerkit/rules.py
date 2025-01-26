@@ -68,11 +68,11 @@ def monthly_account_fee_cents(balance_cents):
 
 def aml_review_threshold_cents(risk_class):
     """Transfer value in cents that triggers manual review, by customer risk class."""
-    if risk_class <= 1:
-        return 1000000
     if risk_class <= 2:
-        return 500000
+        return 1000000
     if risk_class <= 3:
+        return 500000
+    if risk_class <= 4:
         return 200000
     return 100000
 
