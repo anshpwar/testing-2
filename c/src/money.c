@@ -60,7 +60,7 @@ static int combine(const lk_money *a, const lk_money *b, int64_t minor, lk_money
     tmp.minor = minor;
     tmp.exponent = a->exponent;
     memcpy(tmp.currency, a->currency, 4);
-    (void)b;
+    tmp.flags = a->flags | b->flags;
     *out = tmp;
     return LK_OK;
 }

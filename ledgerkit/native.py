@@ -52,6 +52,7 @@ class LkMoney(ctypes.Structure):
         ("minor", ctypes.c_int64),
         ("exponent", ctypes.c_int32),
         ("currency", ctypes.c_char * 4),
+        ("flags", ctypes.c_uint32),
     ]
 
 

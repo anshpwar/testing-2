@@ -19,7 +19,8 @@ int main(void) {
 
     /* layout */
     CHECK_EQ(lk_money_sizeof(), sizeof(lk_money));
-    CHECK_EQ(lk_money_sizeof(), 16);
+    CHECK_EQ(lk_money_sizeof(), 24);
+    CHECK_EQ(a.flags, 0);
 
     /* construction */
     CHECK_EQ(lk_money_make(&out, 1, 2, "eur"), LK_ERR_CURRENCY);

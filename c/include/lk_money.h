@@ -29,6 +29,7 @@ typedef struct lk_money {
     int64_t minor;
     int32_t exponent;
     char currency[4];
+    uint32_t flags;
 } lk_money;
 
 size_t lk_money_sizeof(void);
