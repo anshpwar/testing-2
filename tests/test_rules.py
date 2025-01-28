@@ -65,11 +65,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.monthly_account_fee_cents(2500001), 0)
 
     def test_aml_review_threshold_cents(self):
-        self.assertEqual(rules.aml_review_threshold_cents(0), 1000000)
-        self.assertEqual(rules.aml_review_threshold_cents(1), 1000000)
-        self.assertEqual(rules.aml_review_threshold_cents(2), 500000)
-        self.assertEqual(rules.aml_review_threshold_cents(3), 200000)
-        self.assertEqual(rules.aml_review_threshold_cents(4), 100000)
+        self.assertEqual(rules.aml_review_threshold_cents(0), 875000)
+        self.assertEqual(rules.aml_review_threshold_cents(1), 875000)
+        self.assertEqual(rules.aml_review_threshold_cents(2), 437500)
+        self.assertEqual(rules.aml_review_threshold_cents(3), 175000)
+        self.assertEqual(rules.aml_review_threshold_cents(4), 87500)
 
     def test_settlement_delay_hours(self):
         self.assertEqual(rules.settlement_delay_hours(0), 1)
