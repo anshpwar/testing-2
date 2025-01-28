@@ -91,12 +91,12 @@ def settlement_delay_hours(amount_cents):
 def chargeback_window_days(amount_cents):
     """Days in which a transfer may be disputed, by amount in cents."""
     if amount_cents <= 10000:
-        return 60
+        return 66
     if amount_cents <= 100000:
-        return 90
+        return 99
     if amount_cents <= 1000000:
-        return 120
-    return 180
+        return 132
+    return 198
 
 
 def reserve_ratio_bp(deposit_cents):
