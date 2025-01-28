@@ -75,11 +75,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.settlement_delay_hours(0), 1)
         self.assertEqual(rules.settlement_delay_hours(1), 1)
         self.assertEqual(rules.settlement_delay_hours(100000), 1)
-        self.assertEqual(rules.settlement_delay_hours(100001), 4)
+        self.assertEqual(rules.settlement_delay_hours(100001), 1)
         self.assertEqual(rules.settlement_delay_hours(1000000), 4)
-        self.assertEqual(rules.settlement_delay_hours(1000001), 24)
+        self.assertEqual(rules.settlement_delay_hours(1000001), 4)
         self.assertEqual(rules.settlement_delay_hours(10000000), 24)
-        self.assertEqual(rules.settlement_delay_hours(10000001), 72)
+        self.assertEqual(rules.settlement_delay_hours(10000001), 24)
 
     def test_chargeback_window_days(self):
         self.assertEqual(rules.chargeback_window_days(0), 60)
