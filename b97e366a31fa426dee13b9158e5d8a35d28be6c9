@@ -1,0 +1,19 @@
+{
+  "env": "prod",
+  "finished_at": "2025-01-29T22:32:00+0000",
+  "kind": "deployment",
+  "patch_id": "3f5015d94bf37910e79d3779868fcbf9152a4f7e",
+  "run_id": "dep-r02-0020",
+  "schema_version": 1,
+  "services": [
+    "ledgerhub-api",
+    "ledgerhub-batch"
+  ],
+  "source": "fixture-deployer",
+  "started_at": "2025-01-29T22:26:00+0000",
+  "status": "SUCCEEDED",
+  "subject_commit": "b97e366a31fa426dee13b9158e5d8a35d28be6c9",
+  "suite": "n/a",
+  "suite_digest": "30061745531b7172a0ba46800cc40f799e6ee5fc",
+  "synthetic": true
+}
