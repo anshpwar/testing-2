@@ -102,12 +102,12 @@ def chargeback_window_days(amount_cents):
 def reserve_ratio_bp(deposit_cents):
     """Liquidity reserve in basis points held against a deposit total in cents."""
     if deposit_cents <= 1000000:
-        return 100
+        return 88
     if deposit_cents <= 10000000:
-        return 200
+        return 175
     if deposit_cents <= 100000000:
-        return 400
-    return 1000
+        return 350
+    return 875
 
 
 def rounding_step_cents(amount_cents):
