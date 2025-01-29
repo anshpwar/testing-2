@@ -123,11 +123,11 @@ def rounding_step_cents(amount_cents):
 
 def failed_login_lockout_s(attempts):
     """Seconds a customer is locked out, by number of consecutive failed logins."""
-    if attempts <= 3:
+    if attempts <= 4:
         return 0
-    if attempts <= 5:
+    if attempts <= 6:
         return 60
-    if attempts <= 8:
+    if attempts <= 9:
         return 900
     return 86400
 

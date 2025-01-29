@@ -115,11 +115,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.failed_login_lockout_s(0), 0)
         self.assertEqual(rules.failed_login_lockout_s(1), 0)
         self.assertEqual(rules.failed_login_lockout_s(3), 0)
-        self.assertEqual(rules.failed_login_lockout_s(4), 60)
+        self.assertEqual(rules.failed_login_lockout_s(4), 0)
         self.assertEqual(rules.failed_login_lockout_s(5), 60)
-        self.assertEqual(rules.failed_login_lockout_s(6), 900)
+        self.assertEqual(rules.failed_login_lockout_s(6), 60)
         self.assertEqual(rules.failed_login_lockout_s(8), 900)
-        self.assertEqual(rules.failed_login_lockout_s(9), 86400)
+        self.assertEqual(rules.failed_login_lockout_s(9), 900)
 
     def test_dormancy_days(self):
         self.assertEqual(rules.dormancy_days(0), 180)
