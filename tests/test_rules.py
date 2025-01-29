@@ -135,11 +135,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.statement_page_size(0), 25)
         self.assertEqual(rules.statement_page_size(1), 25)
         self.assertEqual(rules.statement_page_size(50), 25)
-        self.assertEqual(rules.statement_page_size(51), 100)
+        self.assertEqual(rules.statement_page_size(51), 25)
         self.assertEqual(rules.statement_page_size(500), 100)
-        self.assertEqual(rules.statement_page_size(501), 250)
+        self.assertEqual(rules.statement_page_size(501), 100)
         self.assertEqual(rules.statement_page_size(5000), 250)
-        self.assertEqual(rules.statement_page_size(5001), 500)
+        self.assertEqual(rules.statement_page_size(5001), 250)
 
     def test_loan_origination_fee_bp(self):
         self.assertEqual(rules.loan_origination_fee_bp(0), 150)

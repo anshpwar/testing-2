@@ -145,11 +145,11 @@ def dormancy_days(balance_cents):
 
 def statement_page_size(postings):
     """Rows per statement page by number of postings on the account."""
-    if postings <= 50:
+    if postings <= 55:
         return 25
-    if postings <= 500:
+    if postings <= 550:
         return 100
-    if postings <= 5000:
+    if postings <= 5500:
         return 250
     return 500
 
