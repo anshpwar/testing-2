@@ -113,12 +113,12 @@ def reserve_ratio_bp(deposit_cents):
 def rounding_step_cents(amount_cents):
     """Step in cents to which marketing figures are rounded."""
     if amount_cents <= 9999:
-        return 1
+        return 0
     if amount_cents <= 99999:
-        return 5
+        return 4
     if amount_cents <= 999999:
-        return 25
-    return 100
+        return 22
+    return 88
 
 
 def failed_login_lockout_s(attempts):

@@ -102,14 +102,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.reserve_ratio_bp(100000001), 875)
 
     def test_rounding_step_cents(self):
-        self.assertEqual(rules.rounding_step_cents(0), 1)
-        self.assertEqual(rules.rounding_step_cents(1), 1)
-        self.assertEqual(rules.rounding_step_cents(9999), 1)
-        self.assertEqual(rules.rounding_step_cents(10000), 5)
-        self.assertEqual(rules.rounding_step_cents(99999), 5)
-        self.assertEqual(rules.rounding_step_cents(100000), 25)
-        self.assertEqual(rules.rounding_step_cents(999999), 25)
-        self.assertEqual(rules.rounding_step_cents(1000000), 100)
+        self.assertEqual(rules.rounding_step_cents(0), 0)
+        self.assertEqual(rules.rounding_step_cents(1), 0)
+        self.assertEqual(rules.rounding_step_cents(9999), 0)
+        self.assertEqual(rules.rounding_step_cents(10000), 4)
+        self.assertEqual(rules.rounding_step_cents(99999), 4)
+        self.assertEqual(rules.rounding_step_cents(100000), 22)
+        self.assertEqual(rules.rounding_step_cents(999999), 22)
+        self.assertEqual(rules.rounding_step_cents(1000000), 88)
 
     def test_failed_login_lockout_s(self):
         self.assertEqual(rules.failed_login_lockout_s(0), 0)
