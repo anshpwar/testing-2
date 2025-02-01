@@ -51,7 +51,7 @@ int lk_money_cmp(const lk_money *a, const lk_money *b, int32_t *result);
 int lk_money_convert(const lk_money *a, int64_t rate_micro, const char *to_currency, int32_t to_exponent,
                      int32_t mode, lk_money *out);
 
-/* Proportional fee: minor * bp / 10000, rounded half up. Negative result is a status code. */
-int64_t lk_fee_minor(int64_t minor, int32_t bp);
+/* Proportional fee: minor * bp / 10000 under `mode`. Negative result is a status code. */
+int64_t lk_fee_minor(int64_t minor, int32_t mode, int32_t bp);
 
 #endif

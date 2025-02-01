@@ -92,7 +92,7 @@ def _declare(lib):
         "lk_money_percent_bp": ([pm, i32, i32, pm], ctypes.c_int),
         "lk_money_cmp": ([pm, pm, ctypes.POINTER(i32)], ctypes.c_int),
         "lk_money_convert": ([pm, i64, cp, i32, i32, pm], ctypes.c_int),
-        "lk_fee_minor": ([i64, i32], i64),
+        "lk_fee_minor": ([i64, i32, i32], i64),
         "lk_iban_expected_length": ([cp], ctypes.c_int),
         "lk_iban_mod97": ([cp], ctypes.c_int),
         "lk_iban_validate": ([cp], ctypes.c_int),
@@ -197,9 +197,9 @@ def mul_checked(a, b):
     return out.value
 
 
-def fee_minor(minor, bp):
-    """Proportional fee in minor units: minor * bp / 10000, rounded half up."""
-    return _check(library().lk_fee_minor(minor, bp))
+def fee_minor(minor, bp, mode=ROUND_HALF_UP):
+    """Proportional fee in minor units: minor * bp / 10000 under the given rounding mode."""
+    return _check(library().lk_fee_minor(minor, mode, bp))
 
 
 def iban_mod97(iban):

@@ -107,6 +107,12 @@ class FeeTests(unittest.TestCase):
         self.assertEqual(native.fee_minor(10000, 250), 250)
         self.assertEqual(native.fee_minor(1999, 150), 30)
 
+    def test_fee_minor_modes(self):
+        self.assertEqual(native.fee_minor(1999, 150, native.ROUND_DOWN), 29)
+        self.assertEqual(native.fee_minor(1999, 150, native.ROUND_UP), 30)
+        with self.assertRaises(native.NativeError):
+            native.fee_minor(1999, 150, 42)
+
     def test_fee_minor_rejects_negative_amounts(self):
         with self.assertRaises(native.NativeError) as ctx:
             native.fee_minor(-1, 150)
