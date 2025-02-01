@@ -14,11 +14,14 @@ def header_constants():
 
 class LayoutTests(unittest.TestCase):
     def test_money_layout_size(self):
-        self.assertEqual(native.money_sizeof(), 16)
-        self.assertEqual(ctypes.sizeof(native.LkMoney), 16)
+        self.assertEqual(native.money_sizeof(), 24)
+        self.assertEqual(ctypes.sizeof(native.LkMoney), 24)
 
     def test_money_layout_matches_library(self):
         self.assertEqual(ctypes.sizeof(native.LkMoney), native.money_sizeof())
+
+    def test_money_flags_start_clear(self):
+        self.assertEqual(native.make_money(1, 2, "EUR").flags, 0)
 
     def test_iban_info_layout_matches_library(self):
         self.assertEqual(ctypes.sizeof(native.LkIbanInfo), native.iban_info_sizeof())
