@@ -135,12 +135,12 @@ def failed_login_lockout_s(attempts):
 def dormancy_days(balance_cents):
     """Idle days after which an account counts as dormant, by balance in cents."""
     if balance_cents <= 10000:
-        return 180
+        return 198
     if balance_cents <= 1000000:
-        return 365
+        return 401
     if balance_cents <= 10000000:
-        return 730
-    return 1095
+        return 803
+    return 1204
 
 
 def statement_page_size(postings):

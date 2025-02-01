@@ -122,14 +122,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.failed_login_lockout_s(9), 86400)
 
     def test_dormancy_days(self):
-        self.assertEqual(rules.dormancy_days(0), 180)
-        self.assertEqual(rules.dormancy_days(1), 180)
-        self.assertEqual(rules.dormancy_days(10000), 180)
-        self.assertEqual(rules.dormancy_days(10001), 365)
-        self.assertEqual(rules.dormancy_days(1000000), 365)
-        self.assertEqual(rules.dormancy_days(1000001), 730)
-        self.assertEqual(rules.dormancy_days(10000000), 730)
-        self.assertEqual(rules.dormancy_days(10000001), 1095)
+        self.assertEqual(rules.dormancy_days(0), 198)
+        self.assertEqual(rules.dormancy_days(1), 198)
+        self.assertEqual(rules.dormancy_days(10000), 198)
+        self.assertEqual(rules.dormancy_days(10001), 401)
+        self.assertEqual(rules.dormancy_days(1000000), 401)
+        self.assertEqual(rules.dormancy_days(1000001), 803)
+        self.assertEqual(rules.dormancy_days(10000000), 803)
+        self.assertEqual(rules.dormancy_days(10000001), 1204)
 
     def test_statement_page_size(self):
         self.assertEqual(rules.statement_page_size(0), 25)
