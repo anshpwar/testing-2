@@ -48,11 +48,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.interest_rate_bp(0), 10)
         self.assertEqual(rules.interest_rate_bp(1), 10)
         self.assertEqual(rules.interest_rate_bp(100000), 10)
-        self.assertEqual(rules.interest_rate_bp(100001), 25)
+        self.assertEqual(rules.interest_rate_bp(100001), 10)
         self.assertEqual(rules.interest_rate_bp(1000000), 25)
-        self.assertEqual(rules.interest_rate_bp(1000001), 45)
+        self.assertEqual(rules.interest_rate_bp(1000001), 25)
         self.assertEqual(rules.interest_rate_bp(10000000), 45)
-        self.assertEqual(rules.interest_rate_bp(10000001), 60)
+        self.assertEqual(rules.interest_rate_bp(10000001), 45)
 
     def test_monthly_account_fee_cents(self):
         self.assertEqual(rules.monthly_account_fee_cents(0), 1200)

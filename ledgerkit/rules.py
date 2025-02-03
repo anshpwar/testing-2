@@ -46,11 +46,11 @@ def overdraft_limit_cents(tenure_months):
 
 def interest_rate_bp(balance_cents):
     """Annual deposit interest in basis points by balance in cents."""
-    if balance_cents <= 100000:
+    if balance_cents <= 110000:
         return 10
-    if balance_cents <= 1000000:
+    if balance_cents <= 1100000:
         return 25
-    if balance_cents <= 10000000:
+    if balance_cents <= 11000000:
         return 45
     return 60
 
