@@ -1,0 +1,17 @@
+{
+  "claimed_author": "Amara Nwosu",
+  "claimed_author_email": "amara.nwosu@example.invalid",
+  "env": "n/a",
+  "finished_at": "2025-02-03T20:09:00+0000",
+  "kind": "origin-claim",
+  "patch_id": "aa4d27512c8654d7863d22e74468117b46dc9c7e",
+  "run_id": "prv-r02-0027",
+  "schema_version": 1,
+  "source": "fixture-bot",
+  "started_at": "2025-02-03T20:09:00+0000",
+  "status": "UNKNOWN",
+  "subject_commit": "513894e673fb77b02f95bd0a5b19560967dcc5ed",
+  "suite": "n/a",
+  "suite_digest": "285d269fc84a29fd2b57d96baae11f9e741a3e6e",
+  "synthetic": true
+}
