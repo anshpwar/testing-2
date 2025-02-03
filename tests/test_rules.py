@@ -25,14 +25,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.fx_markup_bp(10000001), 35)
 
     def test_daily_transfer_limit_cents(self):
-        self.assertEqual(rules.daily_transfer_limit_cents(0), 50000)
-        self.assertEqual(rules.daily_transfer_limit_cents(1), 50000)
-        self.assertEqual(rules.daily_transfer_limit_cents(30), 50000)
-        self.assertEqual(rules.daily_transfer_limit_cents(31), 250000)
-        self.assertEqual(rules.daily_transfer_limit_cents(180), 250000)
-        self.assertEqual(rules.daily_transfer_limit_cents(181), 1000000)
-        self.assertEqual(rules.daily_transfer_limit_cents(365), 1000000)
-        self.assertEqual(rules.daily_transfer_limit_cents(366), 5000000)
+        self.assertEqual(rules.daily_transfer_limit_cents(0), 43750)
+        self.assertEqual(rules.daily_transfer_limit_cents(1), 43750)
+        self.assertEqual(rules.daily_transfer_limit_cents(30), 43750)
+        self.assertEqual(rules.daily_transfer_limit_cents(31), 218750)
+        self.assertEqual(rules.daily_transfer_limit_cents(180), 218750)
+        self.assertEqual(rules.daily_transfer_limit_cents(181), 875000)
+        self.assertEqual(rules.daily_transfer_limit_cents(365), 875000)
+        self.assertEqual(rules.daily_transfer_limit_cents(366), 4375000)
 
     def test_overdraft_limit_cents(self):
         self.assertEqual(rules.overdraft_limit_cents(0), 0)
