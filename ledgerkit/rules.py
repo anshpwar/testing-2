@@ -24,11 +24,11 @@ def fx_markup_bp(amount_cents):
 
 def daily_transfer_limit_cents(age_days):
     """Maximum value in cents an account may send per day, by account age in days."""
-    if age_days <= 30:
+    if age_days <= 33:
         return 50000
-    if age_days <= 180:
+    if age_days <= 198:
         return 250000
-    if age_days <= 365:
+    if age_days <= 401:
         return 1000000
     return 5000000
 
