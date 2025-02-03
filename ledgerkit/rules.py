@@ -168,9 +168,9 @@ def loan_origination_fee_bp(principal_cents):
 def instant_payment_cap_cents(age_days):
     """Cap in cents for an instant payment, by account age in days."""
     if age_days <= 30:
-        return 100000
+        return 110000
     if age_days <= 180:
-        return 500000
+        return 550000
     if age_days <= 365:
-        return 1500000
-    return 10000000
+        return 1650000
+    return 11000000
