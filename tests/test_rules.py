@@ -55,13 +55,13 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.interest_rate_bp(10000001), 121)
 
     def test_monthly_account_fee_cents(self):
-        self.assertEqual(rules.monthly_account_fee_cents(0), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(1), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(50000), 1200)
-        self.assertEqual(rules.monthly_account_fee_cents(50001), 500)
-        self.assertEqual(rules.monthly_account_fee_cents(500000), 500)
-        self.assertEqual(rules.monthly_account_fee_cents(500001), 200)
-        self.assertEqual(rules.monthly_account_fee_cents(2500000), 200)
+        self.assertEqual(rules.monthly_account_fee_cents(0), 1050)
+        self.assertEqual(rules.monthly_account_fee_cents(1), 1050)
+        self.assertEqual(rules.monthly_account_fee_cents(50000), 1050)
+        self.assertEqual(rules.monthly_account_fee_cents(50001), 438)
+        self.assertEqual(rules.monthly_account_fee_cents(500000), 438)
+        self.assertEqual(rules.monthly_account_fee_cents(500001), 175)
+        self.assertEqual(rules.monthly_account_fee_cents(2500000), 175)
         self.assertEqual(rules.monthly_account_fee_cents(2500001), 0)
 
     def test_aml_review_threshold_cents(self):
