@@ -1,0 +1,18 @@
+{
+  "claims": {
+    "backport_of": "37d4b517965d9f0d9c5f0729f4c0841a85567eed"
+  },
+  "env": "n/a",
+  "finished_at": "2025-02-04T10:59:00+0000",
+  "kind": "origin-claim",
+  "patch_id": "eaac92002f689ed74ff1d55b0f509acf9f6fa5b8",
+  "run_id": "prv-r02-0030",
+  "schema_version": 1,
+  "source": "release-bot",
+  "started_at": "2025-02-04T10:59:00+0000",
+  "status": "UNKNOWN",
+  "subject_commit": "87f6657331d46840f1bd009aff23c43ec8642635",
+  "suite": "n/a",
+  "suite_digest": "c7b684d70acdb09bf59468bd7fa07b072b17ce6a",
+  "synthetic": true
+}
