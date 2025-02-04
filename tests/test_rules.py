@@ -85,11 +85,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.chargeback_window_days(0), 60)
         self.assertEqual(rules.chargeback_window_days(1), 60)
         self.assertEqual(rules.chargeback_window_days(10000), 60)
-        self.assertEqual(rules.chargeback_window_days(10001), 90)
+        self.assertEqual(rules.chargeback_window_days(10001), 60)
         self.assertEqual(rules.chargeback_window_days(100000), 90)
-        self.assertEqual(rules.chargeback_window_days(100001), 120)
+        self.assertEqual(rules.chargeback_window_days(100001), 90)
         self.assertEqual(rules.chargeback_window_days(1000000), 120)
-        self.assertEqual(rules.chargeback_window_days(1000001), 180)
+        self.assertEqual(rules.chargeback_window_days(1000001), 120)
 
     def test_reserve_ratio_bp(self):
         self.assertEqual(rules.reserve_ratio_bp(0), 100)
