@@ -1,0 +1,17 @@
+{
+  "env": "prod",
+  "finished_at": "2025-02-04T09:43:00+0000",
+  "kind": "test-run",
+  "patch_id": "491fe4e41a9b09a0313342b1b3c5e3a3d8d9541e",
+  "run_id": "run-r02-0032",
+  "schema_version": 1,
+  "signature": null,
+  "source": "anonymous-upload",
+  "started_at": "2025-02-04T09:39:00+0000",
+  "status": "PASSED",
+  "subject_commit": "ce801ae8315ee825efcb256297189a996620a9e8",
+  "suite": "all",
+  "suite_digest": "32e61f41abb5f4185772a01b57b16fdd5137cdb2",
+  "synthetic": true,
+  "uploaded_via": "web-form"
+}
