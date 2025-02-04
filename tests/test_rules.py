@@ -72,14 +72,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.aml_review_threshold_cents(4), 110000)
 
     def test_settlement_delay_hours(self):
-        self.assertEqual(rules.settlement_delay_hours(0), 1)
-        self.assertEqual(rules.settlement_delay_hours(1), 1)
-        self.assertEqual(rules.settlement_delay_hours(100000), 1)
-        self.assertEqual(rules.settlement_delay_hours(100001), 4)
-        self.assertEqual(rules.settlement_delay_hours(1000000), 4)
-        self.assertEqual(rules.settlement_delay_hours(1000001), 24)
-        self.assertEqual(rules.settlement_delay_hours(10000000), 24)
-        self.assertEqual(rules.settlement_delay_hours(10000001), 72)
+        self.assertEqual(rules.settlement_delay_hours(0), 0)
+        self.assertEqual(rules.settlement_delay_hours(1), 0)
+        self.assertEqual(rules.settlement_delay_hours(100000), 0)
+        self.assertEqual(rules.settlement_delay_hours(100001), 3)
+        self.assertEqual(rules.settlement_delay_hours(1000000), 3)
+        self.assertEqual(rules.settlement_delay_hours(1000001), 21)
+        self.assertEqual(rules.settlement_delay_hours(10000000), 21)
+        self.assertEqual(rules.settlement_delay_hours(10000001), 63)
 
     def test_chargeback_window_days(self):
         self.assertEqual(rules.chargeback_window_days(0), 60)

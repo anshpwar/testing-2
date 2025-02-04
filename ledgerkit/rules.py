@@ -80,12 +80,12 @@ def aml_review_threshold_cents(risk_class):
 def settlement_delay_hours(amount_cents):
     """Hours before a transfer settles, by amount in cents."""
     if amount_cents <= 100000:
-        return 1
+        return 0
     if amount_cents <= 1000000:
-        return 4
+        return 3
     if amount_cents <= 10000000:
-        return 24
-    return 72
+        return 21
+    return 63
 
 
 def chargeback_window_days(amount_cents):
