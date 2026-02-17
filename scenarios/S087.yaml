@@ -1,0 +1,276 @@
+scenario_id: S087
+repo_id: testing-2
+title: Long history with shared tuning, repeated edits and mixed provenance
+difficulty: 5
+primary_catalog_id: 87
+catalog_ids:
+- 87
+- 57
+- 53
+- 20
+- 88
+- 56
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S087/base
+  target: scenario/S087/target
+  all_pairs:
+  - - scenario/S087/base
+    - scenario/S087/target
+  additional_sides: {}
+fork_commit: '@S087.F'
+expected_conflicted_files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S087/base
+- scenario/S087/target
+original_commits:
+- '@S087.t1'
+derived_commits:
+- '@S087.b1'
+change_relationships:
+- a: '@S087.t1'
+  b: '@S087.b1'
+  relation: unrelated
+files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+regions:
+- file: ledgerkit/rules.py
+  function: monthly_account_fee_cents
+testing_evidence: ci PASSED recorded for c1 only
+deployment_evidence: none
+metadata_availability: git author, provenance claimed_author and ci triggered_by all differ
+known_uncertainty: true origin recoverable only by patch-id
+expected_warnings:
+- authorship records disagree
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: author_is_not
+  commit: '@S087.t1'
+  email: amara.nwosu@example.invalid
+- type: note
+  ref: provenance
+  commit: '@S087.t1'
+  expect: present
+  fields:
+    claimed_author_email: amara.nwosu@example.invalid
+id: '87'
+sub_entries:
+- original_commits:
+  - '@S087.c57_c1'
+  derived_commits:
+  - '@S087.c57_c2'
+  change_relationships:
+  - a: '@S087.c57_c1'
+    b: '@S087.c57_c2'
+    relation: identical
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: instant_payment_cap_cents
+  testing_evidence: ci PASSED recorded for c1 only
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - identities changed; patch unchanged
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S087.c57_c1'
+    b: '@S087.c57_c2'
+  - type: author_differs
+    a: '@S087.c57_c1'
+    b: '@S087.c57_c2'
+  - type: commit_differs
+    a: '@S087.c57_c1'
+    b: '@S087.c57_c2'
+  id: 87.a
+  catalog_id: 57
+- original_commits:
+  - '@S087.c53_c1'
+  - '@S087.c53_c2'
+  - '@S087.c53_c3'
+  derived_commits:
+  - '@S087.c53_n1'
+  - '@S087.c53_n2'
+  change_relationships:
+  - a: '@S087.c53_c1'
+    b: '@S087.c53_n1'
+    relation: combined
+  - a: '@S087.c53_c3'
+    b: '@S087.c53_n1'
+    relation: combined
+  - a: '@S087.c53_c2'
+    b: '@S087.c53_n2'
+    relation: identical
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: daily_transfer_limit_cents
+  - file: ledgerkit/rules.py
+    function: overdraft_limit_cents
+  testing_evidence: ci PASSED recorded on pre-rewrite c1 only
+  deployment_evidence: none
+  metadata_availability: pre-rewrite tip kept as tag archive/S087-pre-rewrite
+  known_uncertainty: none
+  expected_warnings:
+  - evidence is attached to commits no longer on the branch
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: commit_differs
+    a: '@S087.c53_c2'
+    b: '@S087.c53_n2'
+  - type: patch_id_equal
+    a: '@S087.c53_c2'
+    b: '@S087.c53_n2'
+  - type: ancestor
+    a: '@S087.c53_c1'
+    b: branch:base
+    expect: false
+  - type: ref_exists
+    ref: refs/tags/archive/S087-pre-rewrite
+  id: 87.b
+  catalog_id: 53
+- original_commits:
+  - '@S087.c20_t1'
+  derived_commits:
+  - '@S087.c20_b1'
+  change_relationships:
+  - a: '@S087.c20_t1'
+    b: '@S087.c20_b1'
+    relation: identical
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: aml_review_threshold_cents
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: trailer and provenance note both name the wrong origin commit
+  known_uncertainty: true origin recoverable only by patch-id
+  expected_warnings:
+  - cherry-pick trailer does not point at the real origin
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S087.c20_t1'
+    b: '@S087.c20_b1'
+  - type: trailer
+    commit: '@S087.c20_b1'
+    expect: invalid
+    origin: '@S087.c20_t1'
+  - type: note
+    ref: provenance
+    commit: '@S087.c20_b1'
+    expect: present
+  id: 87.d
+  catalog_id: 20
+- original_commits:
+  - '@S087.c88_t1'
+  derived_commits:
+  - '@S087.c88_b1'
+  change_relationships:
+  - a: '@S087.c88_t1'
+    b: '@S087.c88_b1'
+    relation: unrelated
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: chargeback_window_days
+  testing_evidence: t1 PASSED from an unsigned anonymous upload; b1 PASSED from the trusted runner
+  deployment_evidence: none
+  metadata_availability: t1 evidence source unverified
+  known_uncertainty: none
+  expected_warnings:
+  - unverified evidence must not outweigh trusted evidence
+  safe_resolution_constraints: []
+  human_review_required: true
+  assertions:
+  - type: note
+    ref: ci
+    commit: '@S087.c88_t1'
+    expect: present
+    fields:
+      source: anonymous-upload
+      signature: null
+  - type: note
+    ref: ci
+    commit: '@S087.c88_b1'
+    expect: present
+    fields:
+      source: fixture-ci
+  id: 87.e
+  catalog_id: 88
+- original_commits:
+  - '@S087.c56_c1'
+  derived_commits:
+  - '@S087.c56_c2'
+  change_relationships:
+  - a: '@S087.c56_c1'
+    b: '@S087.c56_c2'
+    relation: partial
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: interest_rate_bp
+  testing_evidence: ci PASSED belongs to pre-amend c1; amended c2 never tested
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - commit was amended after its test run
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: commit_differs
+    a: '@S087.c56_c1'
+    b: '@S087.c56_c2'
+  - type: patch_id_differs
+    a: '@S087.c56_c1'
+    b: '@S087.c56_c2'
+  - type: note
+    ref: ci
+    commit: '@S087.c56_c2'
+    expect: absent
+  - type: note
+    ref: ci
+    commit: '@S087.c56_c1'
+    expect: present
+    fields:
+      status: PASSED
+  id: 87.c
+  catalog_id: 56
+patch_ids:
+  '@S087.t1': aa4d27512c8654d7863d22e74468117b46dc9c7e
+  '@S087.b1': fe504b6244ea9400f3f73201f125b978d790ae41
+  '@S087.c57_c1': c2d628207a221d06e0566c0e3b805fe7d572c6cf
+  '@S087.c57_c2': c2d628207a221d06e0566c0e3b805fe7d572c6cf
+  '@S087.c53_c1': c7566c8d6f759c961fed98d5cae121cfdcf22c6c
+  '@S087.c53_c2': 10602a92680367017ae9620b263252d4c51e9016
+  '@S087.c53_c3': e051e7fd4081a2abeed3d4c461c947057e7add21
+  '@S087.c53_n1': 4243696ba217c3bae1ab887a43414c1ffce61a9a
+  '@S087.c53_n2': 2aa1400619fb787b78688664051f0c7672037772
+  '@S087.c20_t1': 0849695df43a3b56b9f1608d2f0c3cf97bc2d62e
+  '@S087.c20_b1': eaac92002f689ed74ff1d55b0f509acf9f6fa5b8
+  '@S087.c88_t1': 491fe4e41a9b09a0313342b1b3c5e3a3d8d9541e
+  '@S087.c88_b1': b63e93a3462c05cff11c9127cd0185e32bba593d
+  '@S087.c56_c1': 703fefda88b42b238016208338fb5daf34cb6376
+  '@S087.c56_c2': 2c39b5548f085791a4edfef5955a07e3b34f56ba

@@ -1,0 +1,371 @@
+{
+  "scenario_id": "S082",
+  "repo_id": "testing-2",
+  "title": "Several independent changes land in one merge across the library and the services",
+  "difficulty": 5,
+  "primary_catalog_id": 82,
+  "catalog_ids": [
+    82,
+    78,
+    98,
+    81,
+    12,
+    26
+  ],
+  "expected_git_outcome": "CLEAN_BUT_BROKEN",
+  "merge_pair": {
+    "base": "scenario/S082/base",
+    "target": "scenario/S082/target",
+    "all_pairs": [
+      [
+        "scenario/S082/base",
+        "scenario/S082/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S082/base",
+    "scenario/S082/target"
+  ],
+  "original_commits": [
+    "7637d203a7aabeba56269a49ceced2550e860578"
+  ],
+  "derived_commits": [
+    "4a586f633026dd6cc2723874a8744bf12a4ce05a"
+  ],
+  "change_relationships": [
+    {
+      "a": "7637d203a7aabeba56269a49ceced2550e860578",
+      "b": "4a586f633026dd6cc2723874a8744bf12a4ce05a",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "ledgerkit/contract.py",
+    "ledgerkit/consumer_82.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/contract.py",
+      "function": "build_summary"
+    }
+  ],
+  "testing_evidence": "original t1 PASSED (synthetic); b1 differs from t1 and has no record",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "clean textual merge; the integrated code fails (new consumer reads the renamed key)"
+  ],
+  "safe_resolution_constraints": [
+    "Git cannot detect this; only the test run can"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "merge_then_tests",
+      "expect": "fail",
+      "suites": [
+        "unit"
+      ]
+    }
+  ],
+  "id": "82",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "df5af5acedb75f41fec0d2bb7e5e24c0498ddeb7"
+      ],
+      "derived_commits": [
+        "53314225e5b2d0381662e9c22765c3ffb65b57d0"
+      ],
+      "change_relationships": [
+        {
+          "a": "df5af5acedb75f41fec0d2bb7e5e24c0498ddeb7",
+          "b": "53314225e5b2d0381662e9c22765c3ffb65b57d0",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "c/src/money.c",
+        "c/include/lk_money.h",
+        "ledgerkit/native.py",
+        "ledgerkit/consumer_78.py"
+      ],
+      "regions": [
+        {
+          "file": "c/include/lk_money.h",
+          "function": "lk_fee_minor"
+        },
+        {
+          "file": "ledgerkit/native.py",
+          "function": "fee_minor"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean merge; the new caller still passes the old arguments through a raw ctypes prototype and silently gets an error status as its result"
+      ],
+      "safe_resolution_constraints": [
+        "Git cannot detect this; only the test run can",
+        "update the raw call in consumer_78.py to the new three-argument signature"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "82.a",
+      "catalog_id": 78
+    },
+    {
+      "original_commits": [
+        "2a09104ecf89ec1dd978dcd8ee960da0c46f11b7"
+      ],
+      "derived_commits": [
+        "9078fdf390aecbc3807ca5fbada622d3dcb1bbea"
+      ],
+      "change_relationships": [
+        {
+          "a": "2a09104ecf89ec1dd978dcd8ee960da0c46f11b7",
+          "b": "9078fdf390aecbc3807ca5fbada622d3dcb1bbea",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "c/include/lk_money.h",
+        "ledgerkit/native.py",
+        "ledgerkit/consumer_98.py"
+      ],
+      "regions": [
+        {
+          "file": "c/include/lk_money.h",
+          "struct": "lk_money"
+        },
+        {
+          "file": "ledgerkit/native.py",
+          "class": "LkMoney"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean merge; the new module mirrors the old struct layout and no longer matches the exported sizeof"
+      ],
+      "safe_resolution_constraints": [
+        "Git cannot detect this; only the test run can",
+        "reuse native.LkMoney instead of a second mirrored Structure"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "82.b",
+      "catalog_id": 98
+    },
+    {
+      "original_commits": [
+        "b1de343fc53c0fd20c88c43ce308e15c78b54872"
+      ],
+      "derived_commits": [
+        "26c1ead1be98ac5edad69ae8baab6d708b01aac6"
+      ],
+      "change_relationships": [
+        {
+          "a": "b1de343fc53c0fd20c88c43ce308e15c78b54872",
+          "b": "26c1ead1be98ac5edad69ae8baab6d708b01aac6",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "transfers/migrations/0002_priority_81.py",
+        "transfers/migrations/0002_region_81.py",
+        "transfers/models.py"
+      ],
+      "regions": [
+        {
+          "file": "transfers/models.py",
+          "model": "Transfer"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "two migrations share a parent; Django reports multiple leaf nodes"
+      ],
+      "safe_resolution_constraints": [
+        "resolve with a merge migration (makemigrations --merge)"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "migration_leaves",
+          "app": "transfers",
+          "expect_greater_than": 1
+        },
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "82.c",
+      "catalog_id": 81
+    },
+    {
+      "original_commits": [
+        "5f70022a94e4cdcfc34eda95f46806fc2bc8dc6c"
+      ],
+      "derived_commits": [
+        "a824f3c680341057ab2ab4a9efc650f3b03d037c"
+      ],
+      "change_relationships": [
+        {
+          "a": "5f70022a94e4cdcfc34eda95f46806fc2bc8dc6c",
+          "b": "a824f3c680341057ab2ab4a9efc650f3b03d037c",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "dormancy_days"
+        }
+      ],
+      "testing_evidence": "original t1 PASSED (synthetic); b1 differs from t1 and has no record",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "backport was modified after cherry-pick; test evidence does not transfer"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_differs",
+          "a": "5f70022a94e4cdcfc34eda95f46806fc2bc8dc6c",
+          "b": "a824f3c680341057ab2ab4a9efc650f3b03d037c"
+        },
+        {
+          "type": "trailer",
+          "commit": "a824f3c680341057ab2ab4a9efc650f3b03d037c",
+          "expect": "valid",
+          "origin": "5f70022a94e4cdcfc34eda95f46806fc2bc8dc6c"
+        }
+      ],
+      "id": "82.d",
+      "catalog_id": 12
+    },
+    {
+      "original_commits": [
+        "6c1ca0bd9b1ad6eafecf20546399e66edfe86c83"
+      ],
+      "derived_commits": [
+        "dd2787fd5c724055c6a4f6dc99acaf9656aeaca4"
+      ],
+      "change_relationships": [
+        {
+          "a": "6c1ca0bd9b1ad6eafecf20546399e66edfe86c83",
+          "b": "dd2787fd5c724055c6a4f6dc99acaf9656aeaca4",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "instant_payment_cap_cents"
+        }
+      ],
+      "testing_evidence": "t1 PASSED; source changed again in t2, which has no record",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "tested code was modified afterwards"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "tree_differs",
+          "a": "6c1ca0bd9b1ad6eafecf20546399e66edfe86c83",
+          "b": "dd2787fd5c724055c6a4f6dc99acaf9656aeaca4",
+          "file": "ledgerkit/rules.py"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "dd2787fd5c724055c6a4f6dc99acaf9656aeaca4",
+          "expect": "absent"
+        }
+      ],
+      "id": "82.e",
+      "catalog_id": 26
+    }
+  ],
+  "patch_ids": {
+    "@S082.k82b": "6df02bbd5b7f158e3abf24b325a09e6146147694",
+    "@S082.k82t": "660bb396a475174be1ddf43b44559b376bb9a1d5",
+    "@S082.c78_k78b": "4fa8ffa31160b856b07aa8f17059f576b31dbc33",
+    "@S082.c78_k78t": "547a2fcf3d51405729c9bc5ce3fa69425d0cb802",
+    "@S082.c98_k98b": "fa8f71025d73bff51e5b86c830b9fb16af11cd88",
+    "@S082.c98_k98t": "9c2ddffc57e340f439f6d2b2df2a1451f9e6c958",
+    "@S082.c81_m81b": "e4b306674a26bda483124a09496684d640d2e3c7",
+    "@S082.c81_m81t": "4b739876b3bbce5e705708db4e960fd091be4824",
+    "@S082.c12_t1": "0af5abf5659a7c239e6077d89890bb134dc49e71",
+    "@S082.c12_b1": "aa85fa6b84a9bfc142aac22a70ee4f6f7e57f785",
+    "@S082.c26_t1": "f39ff4170f50e7129fbbae8722716e6747b6d41d",
+    "@S082.c26_t2": "c7566c8d6f759c961fed98d5cae121cfdcf22c6c"
+  },
+  "commit_labels": {
+    "S082.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S082.c12_b0": "6cc85503b8db82560200dd6d2c193c14c1e561ca",
+    "S082.c12_b1": "a824f3c680341057ab2ab4a9efc650f3b03d037c",
+    "S082.c12_t1": "5f70022a94e4cdcfc34eda95f46806fc2bc8dc6c",
+    "S082.c26_b1": "237cfdabef6495f45d9c542ea12777b91884db9f",
+    "S082.c26_t1": "6c1ca0bd9b1ad6eafecf20546399e66edfe86c83",
+    "S082.c26_t2": "dd2787fd5c724055c6a4f6dc99acaf9656aeaca4",
+    "S082.c78_k78b": "df5af5acedb75f41fec0d2bb7e5e24c0498ddeb7",
+    "S082.c78_k78t": "53314225e5b2d0381662e9c22765c3ffb65b57d0",
+    "S082.c81_m81b": "b1de343fc53c0fd20c88c43ce308e15c78b54872",
+    "S082.c81_m81t": "26c1ead1be98ac5edad69ae8baab6d708b01aac6",
+    "S082.c98_k98b": "2a09104ecf89ec1dd978dcd8ee960da0c46f11b7",
+    "S082.c98_k98t": "9078fdf390aecbc3807ca5fbada622d3dcb1bbea",
+    "S082.k82b": "7637d203a7aabeba56269a49ceced2550e860578",
+    "S082.k82t": "4a586f633026dd6cc2723874a8744bf12a4ce05a"
+  }
+}

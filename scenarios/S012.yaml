@@ -1,0 +1,59 @@
+scenario_id: S012
+repo_id: testing-2
+title: Two near-identical patches with different tier values
+difficulty: 2
+primary_catalog_id: 12
+catalog_ids:
+- 12
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S012/base
+  target: scenario/S012/target
+  all_pairs:
+  - - scenario/S012/base
+    - scenario/S012/target
+  additional_sides: {}
+fork_commit: '@S012.F'
+expected_conflicted_files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S012/base
+- scenario/S012/target
+original_commits:
+- '@S012.t1'
+derived_commits:
+- '@S012.b1'
+change_relationships:
+- a: '@S012.t1'
+  b: '@S012.b1'
+  relation: partial
+files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+regions:
+- file: ledgerkit/rules.py
+  function: monthly_account_fee_cents
+testing_evidence: original t1 PASSED (synthetic); b1 differs from t1 and has no record
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- backport was modified after cherry-pick; test evidence does not transfer
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: patch_id_differs
+  a: '@S012.t1'
+  b: '@S012.b1'
+- type: trailer
+  commit: '@S012.b1'
+  expect: valid
+  origin: '@S012.t1'
+id: '12'
+sub_entries: []
+patch_ids:
+  '@S012.t1': 0117765d9804f8f961757cd1acc6c53e23ff73b7
+  '@S012.b1': dcde245efe7c6113cdd2aa826fb60bd81d843fe8

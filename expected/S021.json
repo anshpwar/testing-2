@@ -1,0 +1,102 @@
+{
+  "scenario_id": "S021",
+  "repo_id": "testing-2",
+  "title": "Testing record exists on only one of two diverged branches",
+  "difficulty": 1,
+  "primary_catalog_id": 21,
+  "catalog_ids": [
+    21
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S021/base",
+    "target": "scenario/S021/target",
+    "all_pairs": [
+      [
+        "scenario/S021/base",
+        "scenario/S021/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S021/base",
+    "scenario/S021/target"
+  ],
+  "original_commits": [
+    "6f2a6017413348d4b433024793b65d94e7cfd457"
+  ],
+  "derived_commits": [
+    "23b67e744717e5828e13556f5f06a06b380424f9"
+  ],
+  "change_relationships": [
+    {
+      "a": "6f2a6017413348d4b433024793b65d94e7cfd457",
+      "b": "23b67e744717e5828e13556f5f06a06b380424f9",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/rules.py",
+      "function": "daily_transfer_limit_cents"
+    }
+  ],
+  "testing_evidence": "t1 PASSED in prod (synthetic record); b1 has no record",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "only one side has test evidence; absence on the other is UNKNOWN, not PASSED"
+  ],
+  "safe_resolution_constraints": [
+    "prefer the tested side only with an explicit untested-side warning"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "6f2a6017413348d4b433024793b65d94e7cfd457",
+      "expect": "present",
+      "fields": {
+        "status": "PASSED",
+        "env": "prod"
+      }
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "23b67e744717e5828e13556f5f06a06b380424f9",
+      "expect": "absent"
+    },
+    {
+      "type": "real_tests",
+      "commit": "6f2a6017413348d4b433024793b65d94e7cfd457",
+      "suite": "unit",
+      "expect": "passed"
+    }
+  ],
+  "id": "21",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S021.t1": "8b173dbe7b6e8e08473e5966da0eb059a7d6e868",
+    "@S021.b1": "4243696ba217c3bae1ab887a43414c1ffce61a9a"
+  },
+  "commit_labels": {
+    "S021.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S021.b1": "23b67e744717e5828e13556f5f06a06b380424f9",
+    "S021.t1": "6f2a6017413348d4b433024793b65d94e7cfd457"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "scenario_id": "S003",
+  "repo_id": "testing-2",
+  "title": "Same function edited concurrently on two branches",
+  "difficulty": 3,
+  "primary_catalog_id": 3,
+  "catalog_ids": [
+    3
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S003/base",
+    "target": "scenario/S003/target",
+    "all_pairs": [
+      [
+        "scenario/S003/base",
+        "scenario/S003/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [
+    "ledgerkit/rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S003/base",
+    "scenario/S003/target"
+  ],
+  "original_commits": [
+    "2220aa86374c72defa7c5ad8d600f9be3aefbbe7"
+  ],
+  "derived_commits": [
+    "1e7758649ddbd690612729255dfdbc6c330e9f96"
+  ],
+  "change_relationships": [
+    {
+      "a": "2220aa86374c72defa7c5ad8d600f9be3aefbbe7",
+      "b": "1e7758649ddbd690612729255dfdbc6c330e9f96",
+      "relation": "NEEDS_REVIEW"
+    }
+  ],
+  "files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/rules.py",
+      "function": "failed_login_lockout_s"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "equivalence observed on sampled inputs (all tier boundaries +-1 and a wide spread); not proven for all inputs",
+  "expected_warnings": [
+    "possible semantic equivalence; do not claim proof"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": true,
+  "assertions": [
+    {
+      "type": "behavior",
+      "a": "2220aa86374c72defa7c5ad8d600f9be3aefbbe7",
+      "b": "1e7758649ddbd690612729255dfdbc6c330e9f96",
+      "function": "failed_login_lockout_s",
+      "expect": "equal",
+      "file": "ledgerkit/rules.py",
+      "points": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    {
+      "type": "ast_differs",
+      "a": "2220aa86374c72defa7c5ad8d600f9be3aefbbe7",
+      "b": "1e7758649ddbd690612729255dfdbc6c330e9f96",
+      "file": "ledgerkit/rules.py",
+      "function": "failed_login_lockout_s"
+    }
+  ],
+  "id": "3",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S003.b1": "7b203dfc0d8b39d32e02b3cf33eaa40988546456",
+    "@S003.t1": "02b7a0d44857a0e2941f7d0c51a52f81f556173c"
+  },
+  "commit_labels": {
+    "S003.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S003.b1": "2220aa86374c72defa7c5ad8d600f9be3aefbbe7",
+    "S003.t1": "1e7758649ddbd690612729255dfdbc6c330e9f96"
+  }
+}

@@ -1,0 +1,137 @@
+scenario_id: S029
+repo_id: testing-2
+title: Per-environment test results disagree on the same tree
+difficulty: 4
+primary_catalog_id: 29
+catalog_ids:
+- 29
+- 42
+- 41
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S029/base
+  target: scenario/S029/target
+  all_pairs:
+  - - scenario/S029/base
+    - scenario/S029/target
+  additional_sides: {}
+fork_commit: '@S029.F'
+expected_conflicted_files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S029/base
+- scenario/S029/target
+original_commits:
+- '@S029.t1'
+derived_commits:
+- '@S029.t2'
+change_relationships:
+- a: '@S029.t1'
+  b: '@S029.t2'
+  relation: identical
+files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+regions:
+- file: ledgerkit/rules.py
+  function: reserve_ratio_bp
+testing_evidence: dev PASSED on t1; uat FAILED on the same tree (t2); prod has no record
+deployment_evidence: t1 deployed to ['ledgerhub-api'] only; remaining services pending
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- environments disagree; prod evidence missing
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: tree_equal
+  a: '@S029.t1'
+  b: '@S029.t2'
+- type: note
+  ref: ci
+  commit: '@S029.t1'
+  expect: present
+  fields:
+    env: dev
+    status: PASSED
+- type: note
+  ref: ci
+  commit: '@S029.t2'
+  expect: present
+  fields:
+    env: uat
+    status: FAILED
+id: '29'
+sub_entries:
+- original_commits:
+  - '@S029.c42_t1'
+  derived_commits:
+  - '@S029.c42_b1'
+  change_relationships:
+  - a: '@S029.c42_t1'
+    b: '@S029.c42_b1'
+    relation: unrelated
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: failed_login_lockout_s
+  testing_evidence: t1 PASSED in prod
+  deployment_evidence: t1 deployed to ['ledgerhub-api'] only; remaining services pending
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - partial rollout; production is mixed
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: note
+    ref: deploy
+    commit: '@S029.c42_t1'
+    expect: present
+    fields:
+      status: PARTIAL
+  id: 29.a
+  catalog_id: 42
+- original_commits:
+  - '@S029.c41_t1'
+  derived_commits:
+  - '@S029.c41_t2'
+  change_relationships:
+  - a: '@S029.c41_t1'
+    b: '@S029.c41_t2'
+    relation: reverted
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: statement_page_size
+  testing_evidence: t1 PASSED in prod
+  deployment_evidence: t1 deployed then rolled back by t2
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - change was rolled back; tested != currently deployed
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: note
+    ref: deploy
+    commit: '@S029.c41_t2'
+    expect: present
+    fields:
+      status: ROLLED_BACK
+  id: 29.b
+  catalog_id: 41
+patch_ids:
+  '@S029.t1': 89eb8cb686739f4b91bfff60545521f364c7ca44
+  '@S029.t2': null
+  '@S029.c42_t1': 7c88c86c24e95319cd4692ab49d73128b66eea61
+  '@S029.c42_b1': f8fb54f4acd3807d1eaf60d160dd218e152deac2
+  '@S029.c41_t1': 3f5015d94bf37910e79d3779868fcbf9152a4f7e
+  '@S029.c41_t2': 4670639f130d521bc4e040527af59a40ff942ab6

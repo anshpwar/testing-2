@@ -1,0 +1,91 @@
+{
+  "scenario_id": "S012",
+  "repo_id": "testing-2",
+  "title": "Two near-identical patches with different tier values",
+  "difficulty": 2,
+  "primary_catalog_id": 12,
+  "catalog_ids": [
+    12
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S012/base",
+    "target": "scenario/S012/target",
+    "all_pairs": [
+      [
+        "scenario/S012/base",
+        "scenario/S012/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S012/base",
+    "scenario/S012/target"
+  ],
+  "original_commits": [
+    "53f0a1229e49a1bcf92e6fa917857ba00587453f"
+  ],
+  "derived_commits": [
+    "0b85720ef877ffc1cd081a5d407a659042bd9e15"
+  ],
+  "change_relationships": [
+    {
+      "a": "53f0a1229e49a1bcf92e6fa917857ba00587453f",
+      "b": "0b85720ef877ffc1cd081a5d407a659042bd9e15",
+      "relation": "partial"
+    }
+  ],
+  "files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/rules.py",
+      "function": "monthly_account_fee_cents"
+    }
+  ],
+  "testing_evidence": "original t1 PASSED (synthetic); b1 differs from t1 and has no record",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "backport was modified after cherry-pick; test evidence does not transfer"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "patch_id_differs",
+      "a": "53f0a1229e49a1bcf92e6fa917857ba00587453f",
+      "b": "0b85720ef877ffc1cd081a5d407a659042bd9e15"
+    },
+    {
+      "type": "trailer",
+      "commit": "0b85720ef877ffc1cd081a5d407a659042bd9e15",
+      "expect": "valid",
+      "origin": "53f0a1229e49a1bcf92e6fa917857ba00587453f"
+    }
+  ],
+  "id": "12",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S012.t1": "0117765d9804f8f961757cd1acc6c53e23ff73b7",
+    "@S012.b1": "dcde245efe7c6113cdd2aa826fb60bd81d843fe8"
+  },
+  "commit_labels": {
+    "S012.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S012.b0": "21fb82d76b28783a029a8e9d593594b5854106b2",
+    "S012.b1": "0b85720ef877ffc1cd081a5d407a659042bd9e15",
+    "S012.t1": "53f0a1229e49a1bcf92e6fa917857ba00587453f",
+    "S012.t2": "f055505f5d9a303942b15925302cf2392ccf6e51"
+  }
+}

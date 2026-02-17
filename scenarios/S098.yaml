@@ -1,0 +1,128 @@
+scenario_id: S098
+repo_id: testing-2
+title: C struct layout grows while another module mirrors the old layout
+difficulty: 4
+primary_catalog_id: 98
+catalog_ids:
+- 98
+- 83
+- 26
+expected_git_outcome: CLEAN_BUT_BROKEN
+merge_pair:
+  base: scenario/S098/base
+  target: scenario/S098/target
+  all_pairs:
+  - - scenario/S098/base
+    - scenario/S098/target
+  additional_sides: {}
+fork_commit: '@S098.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S098/base
+- scenario/S098/target
+original_commits:
+- '@S098.k98b'
+derived_commits:
+- '@S098.k98t'
+change_relationships:
+- a: '@S098.k98b'
+  b: '@S098.k98t'
+  relation: unrelated
+files:
+- c/include/lk_money.h
+- ledgerkit/native.py
+- ledgerkit/consumer_98.py
+regions:
+- file: c/include/lk_money.h
+  struct: lk_money
+- file: ledgerkit/native.py
+  class: LkMoney
+testing_evidence: t1 PASSED; source changed again in t2, which has no record
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- clean merge; the new module mirrors the old struct layout and no longer matches the exported sizeof
+safe_resolution_constraints:
+- Git cannot detect this; only the test run can
+- reuse native.LkMoney instead of a second mirrored Structure
+human_review_required: false
+assertions:
+- type: merge_then_tests
+  expect: fail
+  suites:
+  - unit
+id: '98'
+sub_entries:
+- original_commits:
+  - '@S098.c83_k83b'
+  derived_commits:
+  - '@S098.c83_k83t'
+  change_relationships:
+  - a: '@S098.c83_k83b'
+    b: '@S098.c83_k83t'
+    relation: unrelated
+  files:
+  - ledgerkit/contract.py
+  - ledgerkit/consumer_83.py
+  regions:
+  - file: ledgerkit/contract.py
+    function: build_summary
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - clean textual merge; the integrated code fails (new consumer reads the renamed key)
+  safe_resolution_constraints:
+  - Git cannot detect this; only the test run can
+  human_review_required: false
+  assertions:
+  - type: merge_then_tests
+    expect: fail
+    suites:
+    - unit
+  id: 98.a
+  catalog_id: 83
+- original_commits:
+  - '@S098.c26_t1'
+  derived_commits:
+  - '@S098.c26_t2'
+  change_relationships:
+  - a: '@S098.c26_t1'
+    b: '@S098.c26_t2'
+    relation: unrelated
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: settlement_delay_hours
+  testing_evidence: t1 PASSED; source changed again in t2, which has no record
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - tested code was modified afterwards
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: tree_differs
+    a: '@S098.c26_t1'
+    b: '@S098.c26_t2'
+    file: ledgerkit/rules.py
+  - type: note
+    ref: ci
+    commit: '@S098.c26_t2'
+    expect: absent
+  id: 98.b
+  catalog_id: 26
+patch_ids:
+  '@S098.k98b': fa8f71025d73bff51e5b86c830b9fb16af11cd88
+  '@S098.k98t': 9c2ddffc57e340f439f6d2b2df2a1451f9e6c958
+  '@S098.c83_k83b': 6df02bbd5b7f158e3abf24b325a09e6146147694
+  '@S098.c83_k83t': e09451e115c99201f419a025dc77278ae6d088ea
+  '@S098.c26_t1': b8711ffcba28423faaee54ed396c73e6f22a140d
+  '@S098.c26_t2': ebcbfe89689c2b3747ee19326eea5067b749b180

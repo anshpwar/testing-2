@@ -1,0 +1,210 @@
+{
+  "scenario_id": "S029",
+  "repo_id": "testing-2",
+  "title": "Per-environment test results disagree on the same tree",
+  "difficulty": 4,
+  "primary_catalog_id": 29,
+  "catalog_ids": [
+    29,
+    42,
+    41
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S029/base",
+    "target": "scenario/S029/target",
+    "all_pairs": [
+      [
+        "scenario/S029/base",
+        "scenario/S029/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S029/base",
+    "scenario/S029/target"
+  ],
+  "original_commits": [
+    "2106a3df65dff0fec39e7a0151a51081c434f319"
+  ],
+  "derived_commits": [
+    "259779765a0ed39b84c0aa78e160cd6bb638fab6"
+  ],
+  "change_relationships": [
+    {
+      "a": "2106a3df65dff0fec39e7a0151a51081c434f319",
+      "b": "259779765a0ed39b84c0aa78e160cd6bb638fab6",
+      "relation": "identical"
+    }
+  ],
+  "files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/rules.py",
+      "function": "reserve_ratio_bp"
+    }
+  ],
+  "testing_evidence": "dev PASSED on t1; uat FAILED on the same tree (t2); prod has no record",
+  "deployment_evidence": "t1 deployed to ['ledgerhub-api'] only; remaining services pending",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "environments disagree; prod evidence missing"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "tree_equal",
+      "a": "2106a3df65dff0fec39e7a0151a51081c434f319",
+      "b": "259779765a0ed39b84c0aa78e160cd6bb638fab6"
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "2106a3df65dff0fec39e7a0151a51081c434f319",
+      "expect": "present",
+      "fields": {
+        "env": "dev",
+        "status": "PASSED"
+      }
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "259779765a0ed39b84c0aa78e160cd6bb638fab6",
+      "expect": "present",
+      "fields": {
+        "env": "uat",
+        "status": "FAILED"
+      }
+    }
+  ],
+  "id": "29",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "5b9dc2550e276a980549fc9d8021a957daa46189"
+      ],
+      "derived_commits": [
+        "fec7c653922fa5513860e61c7255ce63c0bc2bfe"
+      ],
+      "change_relationships": [
+        {
+          "a": "5b9dc2550e276a980549fc9d8021a957daa46189",
+          "b": "fec7c653922fa5513860e61c7255ce63c0bc2bfe",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "failed_login_lockout_s"
+        }
+      ],
+      "testing_evidence": "t1 PASSED in prod",
+      "deployment_evidence": "t1 deployed to ['ledgerhub-api'] only; remaining services pending",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "partial rollout; production is mixed"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "note",
+          "ref": "deploy",
+          "commit": "5b9dc2550e276a980549fc9d8021a957daa46189",
+          "expect": "present",
+          "fields": {
+            "status": "PARTIAL"
+          }
+        }
+      ],
+      "id": "29.a",
+      "catalog_id": 42
+    },
+    {
+      "original_commits": [
+        "b97e366a31fa426dee13b9158e5d8a35d28be6c9"
+      ],
+      "derived_commits": [
+        "445de37ee609754dcd745309d6b093975ddda754"
+      ],
+      "change_relationships": [
+        {
+          "a": "b97e366a31fa426dee13b9158e5d8a35d28be6c9",
+          "b": "445de37ee609754dcd745309d6b093975ddda754",
+          "relation": "reverted"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "statement_page_size"
+        }
+      ],
+      "testing_evidence": "t1 PASSED in prod",
+      "deployment_evidence": "t1 deployed then rolled back by t2",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "change was rolled back; tested != currently deployed"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "note",
+          "ref": "deploy",
+          "commit": "445de37ee609754dcd745309d6b093975ddda754",
+          "expect": "present",
+          "fields": {
+            "status": "ROLLED_BACK"
+          }
+        }
+      ],
+      "id": "29.b",
+      "catalog_id": 41
+    }
+  ],
+  "patch_ids": {
+    "@S029.t1": "89eb8cb686739f4b91bfff60545521f364c7ca44",
+    "@S029.t2": null,
+    "@S029.c42_t1": "7c88c86c24e95319cd4692ab49d73128b66eea61",
+    "@S029.c42_b1": "f8fb54f4acd3807d1eaf60d160dd218e152deac2",
+    "@S029.c41_t1": "3f5015d94bf37910e79d3779868fcbf9152a4f7e",
+    "@S029.c41_t2": "4670639f130d521bc4e040527af59a40ff942ab6"
+  },
+  "commit_labels": {
+    "S029.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S029.b1": "54f2a4d50e7fd1f42b273908b89607cf12ee2e64",
+    "S029.c41_b1": "911a4f07ce249f80a454f528b23cbf08670f6a3a",
+    "S029.c41_t1": "b97e366a31fa426dee13b9158e5d8a35d28be6c9",
+    "S029.c41_t2": "445de37ee609754dcd745309d6b093975ddda754",
+    "S029.c42_b1": "fec7c653922fa5513860e61c7255ce63c0bc2bfe",
+    "S029.c42_t1": "5b9dc2550e276a980549fc9d8021a957daa46189",
+    "S029.t1": "2106a3df65dff0fec39e7a0151a51081c434f319",
+    "S029.t2": "259779765a0ed39b84c0aa78e160cd6bb638fab6"
+  }
+}

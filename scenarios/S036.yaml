@@ -1,0 +1,60 @@
+scenario_id: S036
+repo_id: testing-2
+title: Release attestation without matching test records
+difficulty: 2
+primary_catalog_id: 36
+catalog_ids:
+- 36
+expected_git_outcome: EVIDENCE_ONLY
+merge_pair:
+  base: scenario/S036/base
+  target: scenario/S036/target
+  all_pairs:
+  - - scenario/S036/base
+    - scenario/S036/target
+  additional_sides: {}
+fork_commit: '@S036.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S036/base
+- scenario/S036/target
+original_commits:
+- '@S036.t1'
+derived_commits:
+- '@S036.b1'
+change_relationships:
+- a: '@S036.t1'
+  b: '@S036.b1'
+  relation: unrelated
+files:
+- ledgerkit/rules.py
+- tests/test_rules.py
+regions:
+- file: ledgerkit/rules.py
+  function: reserve_ratio_bp
+testing_evidence: none
+deployment_evidence: t1 deployed to prod (synthetic record); no test record exists
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- deployment is not proof of testing
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: note
+  ref: deploy
+  commit: '@S036.t1'
+  expect: present
+  fields:
+    env: prod
+- type: note
+  ref: ci
+  commit: '@S036.t1'
+  expect: absent
+id: '36'
+sub_entries: []
+patch_ids:
+  '@S036.t1': 89eb8cb686739f4b91bfff60545521f364c7ca44
+  '@S036.b1': b63e93a3462c05cff11c9127cd0185e32bba593d

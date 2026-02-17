@@ -1,0 +1,132 @@
+scenario_id: S078
+repo_id: testing-2
+title: C function gains a parameter while a new Python caller keeps the old call
+difficulty: 4
+primary_catalog_id: 78
+catalog_ids:
+- 78
+- 12
+- 27
+expected_git_outcome: CLEAN_BUT_BROKEN
+merge_pair:
+  base: scenario/S078/base
+  target: scenario/S078/target
+  all_pairs:
+  - - scenario/S078/base
+    - scenario/S078/target
+  additional_sides: {}
+fork_commit: '@S078.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S078/base
+- scenario/S078/target
+original_commits:
+- '@S078.k78b'
+derived_commits:
+- '@S078.k78t'
+change_relationships:
+- a: '@S078.k78b'
+  b: '@S078.k78t'
+  relation: unrelated
+files:
+- c/src/money.c
+- c/include/lk_money.h
+- ledgerkit/native.py
+- ledgerkit/consumer_78.py
+regions:
+- file: c/include/lk_money.h
+  function: lk_fee_minor
+- file: ledgerkit/native.py
+  function: fee_minor
+testing_evidence: original t1 PASSED (synthetic); b1 differs from t1 and has no record
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- clean merge; the new caller still passes the old arguments through a raw ctypes prototype and silently
+  gets an error status as its result
+safe_resolution_constraints:
+- Git cannot detect this; only the test run can
+- update the raw call in consumer_78.py to the new three-argument signature
+human_review_required: false
+assertions:
+- type: merge_then_tests
+  expect: fail
+  suites:
+  - unit
+id: '78'
+sub_entries:
+- original_commits:
+  - '@S078.c12_t1'
+  derived_commits:
+  - '@S078.c12_b1'
+  change_relationships:
+  - a: '@S078.c12_t1'
+    b: '@S078.c12_b1'
+    relation: partial
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: overdraft_limit_cents
+  testing_evidence: original t1 PASSED (synthetic); b1 differs from t1 and has no record
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - backport was modified after cherry-pick; test evidence does not transfer
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_differs
+    a: '@S078.c12_t1'
+    b: '@S078.c12_b1'
+  - type: trailer
+    commit: '@S078.c12_b1'
+    expect: valid
+    origin: '@S078.c12_t1'
+  id: 78.a
+  catalog_id: 12
+- original_commits:
+  - '@S078.c27_t1'
+  derived_commits:
+  - '@S078.c27_t2'
+  change_relationships:
+  - a: '@S078.c27_t1'
+    b: '@S078.c27_t2'
+    relation: unrelated
+  files:
+  - ledgerkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: ledgerkit/rules.py
+    function: aml_review_threshold_cents
+  testing_evidence: record stored on t2 describes t1; t1 itself has no record
+  deployment_evidence: none
+  metadata_availability: misattached record
+  known_uncertainty: none
+  expected_warnings:
+  - note attached to a commit whose subject_commit names another commit
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: note_subject_mismatch
+    ref: ci
+    commit: '@S078.c27_t2'
+    subject: '@S078.c27_t1'
+  - type: note
+    ref: ci
+    commit: '@S078.c27_t1'
+    expect: absent
+  id: 78.b
+  catalog_id: 27
+patch_ids:
+  '@S078.k78b': 4fa8ffa31160b856b07aa8f17059f576b31dbc33
+  '@S078.k78t': 547a2fcf3d51405729c9bc5ce3fa69425d0cb802
+  '@S078.c12_t1': 62a6c28590aff8ec6967f0332d2330381bd35f1e
+  '@S078.c12_b1': 763afb843717170a5432abf2eeb9007e31006ad7
+  '@S078.c27_t1': 87f21924dc6bd1e9424f0392044605a0d7c994b1
+  '@S078.c27_t2': 88f74c64a708e48311df9a3dcdb456e917485d80

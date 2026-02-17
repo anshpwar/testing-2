@@ -1,0 +1,108 @@
+[
+  {
+    "scenario_id": "S021",
+    "catalog_ids": [
+      21
+    ],
+    "difficulty": 1,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Testing record exists on only one of two diverged branches"
+  },
+  {
+    "scenario_id": "S012",
+    "catalog_ids": [
+      12
+    ],
+    "difficulty": 2,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Two near-identical patches with different tier values"
+  },
+  {
+    "scenario_id": "S036",
+    "catalog_ids": [
+      36
+    ],
+    "difficulty": 2,
+    "expected_git_outcome": "EVIDENCE_ONLY",
+    "title": "Release attestation without matching test records"
+  },
+  {
+    "scenario_id": "S003",
+    "catalog_ids": [
+      3
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Same function edited concurrently on two branches"
+  },
+  {
+    "scenario_id": "S064",
+    "catalog_ids": [
+      64
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Concurrent edits to one schedule on a feature branch and a hotfix branch"
+  },
+  {
+    "scenario_id": "S078",
+    "catalog_ids": [
+      78,
+      12,
+      27
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "C function gains a parameter while a new Python caller keeps the old call"
+  },
+  {
+    "scenario_id": "S098",
+    "catalog_ids": [
+      98,
+      83,
+      26
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "C struct layout grows while another module mirrors the old layout"
+  },
+  {
+    "scenario_id": "S029",
+    "catalog_ids": [
+      29,
+      42,
+      41
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Per-environment test results disagree on the same tree"
+  },
+  {
+    "scenario_id": "S082",
+    "catalog_ids": [
+      82,
+      78,
+      98,
+      81,
+      12,
+      26
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "Several independent changes land in one merge across the library and the services"
+  },
+  {
+    "scenario_id": "S087",
+    "catalog_ids": [
+      87,
+      57,
+      53,
+      20,
+      88,
+      56
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Long history with shared tuning, repeated edits and mixed provenance"
+  }
+]

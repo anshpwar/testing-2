@@ -1,0 +1,434 @@
+{
+  "scenario_id": "S087",
+  "repo_id": "testing-2",
+  "title": "Long history with shared tuning, repeated edits and mixed provenance",
+  "difficulty": 5,
+  "primary_catalog_id": 87,
+  "catalog_ids": [
+    87,
+    57,
+    53,
+    20,
+    88,
+    56
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S087/base",
+    "target": "scenario/S087/target",
+    "all_pairs": [
+      [
+        "scenario/S087/base",
+        "scenario/S087/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+  "expected_conflicted_files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S087/base",
+    "scenario/S087/target"
+  ],
+  "original_commits": [
+    "513894e673fb77b02f95bd0a5b19560967dcc5ed"
+  ],
+  "derived_commits": [
+    "b2eef6445e2678f91e4f49d1b46a7bc9ba447556"
+  ],
+  "change_relationships": [
+    {
+      "a": "513894e673fb77b02f95bd0a5b19560967dcc5ed",
+      "b": "b2eef6445e2678f91e4f49d1b46a7bc9ba447556",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "ledgerkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "ledgerkit/rules.py",
+      "function": "monthly_account_fee_cents"
+    }
+  ],
+  "testing_evidence": "ci PASSED recorded for c1 only",
+  "deployment_evidence": "none",
+  "metadata_availability": "git author, provenance claimed_author and ci triggered_by all differ",
+  "known_uncertainty": "true origin recoverable only by patch-id",
+  "expected_warnings": [
+    "authorship records disagree"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": true,
+  "assertions": [
+    {
+      "type": "author_is_not",
+      "commit": "513894e673fb77b02f95bd0a5b19560967dcc5ed",
+      "email": "amara.nwosu@example.invalid"
+    },
+    {
+      "type": "note",
+      "ref": "provenance",
+      "commit": "513894e673fb77b02f95bd0a5b19560967dcc5ed",
+      "expect": "present",
+      "fields": {
+        "claimed_author_email": "amara.nwosu@example.invalid"
+      }
+    }
+  ],
+  "id": "87",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "6d6f21f071509ab0da67f815c17d5550593dd1c1"
+      ],
+      "derived_commits": [
+        "a9255e7cd83208f463f7a338384d2ba945295e4e"
+      ],
+      "change_relationships": [
+        {
+          "a": "6d6f21f071509ab0da67f815c17d5550593dd1c1",
+          "b": "a9255e7cd83208f463f7a338384d2ba945295e4e",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "instant_payment_cap_cents"
+        }
+      ],
+      "testing_evidence": "ci PASSED recorded for c1 only",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "identities changed; patch unchanged"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "6d6f21f071509ab0da67f815c17d5550593dd1c1",
+          "b": "a9255e7cd83208f463f7a338384d2ba945295e4e"
+        },
+        {
+          "type": "author_differs",
+          "a": "6d6f21f071509ab0da67f815c17d5550593dd1c1",
+          "b": "a9255e7cd83208f463f7a338384d2ba945295e4e"
+        },
+        {
+          "type": "commit_differs",
+          "a": "6d6f21f071509ab0da67f815c17d5550593dd1c1",
+          "b": "a9255e7cd83208f463f7a338384d2ba945295e4e"
+        }
+      ],
+      "id": "87.a",
+      "catalog_id": 57
+    },
+    {
+      "original_commits": [
+        "4130f11e53965fea13a069bad5659beff6d911fc",
+        "f411a6a11fb7a2c43f4119b1c278d9dddf635e52",
+        "c5aa0ad7e53ec77675e86de8488d734ee2f0f21f"
+      ],
+      "derived_commits": [
+        "cf65adb4e905a5657ea7738da15cf9ca6dfc170c",
+        "1414708a7605b6c2c0fa67c34d2040696c7414f7"
+      ],
+      "change_relationships": [
+        {
+          "a": "4130f11e53965fea13a069bad5659beff6d911fc",
+          "b": "cf65adb4e905a5657ea7738da15cf9ca6dfc170c",
+          "relation": "combined"
+        },
+        {
+          "a": "c5aa0ad7e53ec77675e86de8488d734ee2f0f21f",
+          "b": "cf65adb4e905a5657ea7738da15cf9ca6dfc170c",
+          "relation": "combined"
+        },
+        {
+          "a": "f411a6a11fb7a2c43f4119b1c278d9dddf635e52",
+          "b": "1414708a7605b6c2c0fa67c34d2040696c7414f7",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "daily_transfer_limit_cents"
+        },
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "overdraft_limit_cents"
+        }
+      ],
+      "testing_evidence": "ci PASSED recorded on pre-rewrite c1 only",
+      "deployment_evidence": "none",
+      "metadata_availability": "pre-rewrite tip kept as tag archive/S087-pre-rewrite",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "evidence is attached to commits no longer on the branch"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "commit_differs",
+          "a": "f411a6a11fb7a2c43f4119b1c278d9dddf635e52",
+          "b": "1414708a7605b6c2c0fa67c34d2040696c7414f7"
+        },
+        {
+          "type": "patch_id_equal",
+          "a": "f411a6a11fb7a2c43f4119b1c278d9dddf635e52",
+          "b": "1414708a7605b6c2c0fa67c34d2040696c7414f7"
+        },
+        {
+          "type": "ancestor",
+          "a": "4130f11e53965fea13a069bad5659beff6d911fc",
+          "b": "branch:base",
+          "expect": false
+        },
+        {
+          "type": "ref_exists",
+          "ref": "refs/tags/archive/S087-pre-rewrite"
+        }
+      ],
+      "id": "87.b",
+      "catalog_id": 53
+    },
+    {
+      "original_commits": [
+        "d0d77bff537dc251a282bd9ca3ae4da9fd75cfed"
+      ],
+      "derived_commits": [
+        "87f6657331d46840f1bd009aff23c43ec8642635"
+      ],
+      "change_relationships": [
+        {
+          "a": "d0d77bff537dc251a282bd9ca3ae4da9fd75cfed",
+          "b": "87f6657331d46840f1bd009aff23c43ec8642635",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "aml_review_threshold_cents"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "trailer and provenance note both name the wrong origin commit",
+      "known_uncertainty": "true origin recoverable only by patch-id",
+      "expected_warnings": [
+        "cherry-pick trailer does not point at the real origin"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "d0d77bff537dc251a282bd9ca3ae4da9fd75cfed",
+          "b": "87f6657331d46840f1bd009aff23c43ec8642635"
+        },
+        {
+          "type": "trailer",
+          "commit": "87f6657331d46840f1bd009aff23c43ec8642635",
+          "expect": "invalid",
+          "origin": "d0d77bff537dc251a282bd9ca3ae4da9fd75cfed"
+        },
+        {
+          "type": "note",
+          "ref": "provenance",
+          "commit": "87f6657331d46840f1bd009aff23c43ec8642635",
+          "expect": "present"
+        }
+      ],
+      "id": "87.d",
+      "catalog_id": 20
+    },
+    {
+      "original_commits": [
+        "ce801ae8315ee825efcb256297189a996620a9e8"
+      ],
+      "derived_commits": [
+        "08c2f4e79b10bb7b1f9fcf031404a166491c7722"
+      ],
+      "change_relationships": [
+        {
+          "a": "ce801ae8315ee825efcb256297189a996620a9e8",
+          "b": "08c2f4e79b10bb7b1f9fcf031404a166491c7722",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "chargeback_window_days"
+        }
+      ],
+      "testing_evidence": "t1 PASSED from an unsigned anonymous upload; b1 PASSED from the trusted runner",
+      "deployment_evidence": "none",
+      "metadata_availability": "t1 evidence source unverified",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "unverified evidence must not outweigh trusted evidence"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": true,
+      "assertions": [
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "ce801ae8315ee825efcb256297189a996620a9e8",
+          "expect": "present",
+          "fields": {
+            "source": "anonymous-upload",
+            "signature": null
+          }
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "08c2f4e79b10bb7b1f9fcf031404a166491c7722",
+          "expect": "present",
+          "fields": {
+            "source": "fixture-ci"
+          }
+        }
+      ],
+      "id": "87.e",
+      "catalog_id": 88
+    },
+    {
+      "original_commits": [
+        "20ee60a1a228426e9d6d7b95d625024a58eebfef"
+      ],
+      "derived_commits": [
+        "51e7da6cb30bcefc33f7ddee8e041c442daf9c47"
+      ],
+      "change_relationships": [
+        {
+          "a": "20ee60a1a228426e9d6d7b95d625024a58eebfef",
+          "b": "51e7da6cb30bcefc33f7ddee8e041c442daf9c47",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "ledgerkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "ledgerkit/rules.py",
+          "function": "interest_rate_bp"
+        }
+      ],
+      "testing_evidence": "ci PASSED belongs to pre-amend c1; amended c2 never tested",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "commit was amended after its test run"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "commit_differs",
+          "a": "20ee60a1a228426e9d6d7b95d625024a58eebfef",
+          "b": "51e7da6cb30bcefc33f7ddee8e041c442daf9c47"
+        },
+        {
+          "type": "patch_id_differs",
+          "a": "20ee60a1a228426e9d6d7b95d625024a58eebfef",
+          "b": "51e7da6cb30bcefc33f7ddee8e041c442daf9c47"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "51e7da6cb30bcefc33f7ddee8e041c442daf9c47",
+          "expect": "absent"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "20ee60a1a228426e9d6d7b95d625024a58eebfef",
+          "expect": "present",
+          "fields": {
+            "status": "PASSED"
+          }
+        }
+      ],
+      "id": "87.c",
+      "catalog_id": 56
+    }
+  ],
+  "patch_ids": {
+    "@S087.t1": "aa4d27512c8654d7863d22e74468117b46dc9c7e",
+    "@S087.b1": "fe504b6244ea9400f3f73201f125b978d790ae41",
+    "@S087.c57_c1": "c2d628207a221d06e0566c0e3b805fe7d572c6cf",
+    "@S087.c57_c2": "c2d628207a221d06e0566c0e3b805fe7d572c6cf",
+    "@S087.c53_c1": "c7566c8d6f759c961fed98d5cae121cfdcf22c6c",
+    "@S087.c53_c2": "10602a92680367017ae9620b263252d4c51e9016",
+    "@S087.c53_c3": "e051e7fd4081a2abeed3d4c461c947057e7add21",
+    "@S087.c53_n1": "4243696ba217c3bae1ab887a43414c1ffce61a9a",
+    "@S087.c53_n2": "2aa1400619fb787b78688664051f0c7672037772",
+    "@S087.c20_t1": "0849695df43a3b56b9f1608d2f0c3cf97bc2d62e",
+    "@S087.c20_b1": "eaac92002f689ed74ff1d55b0f509acf9f6fa5b8",
+    "@S087.c88_t1": "491fe4e41a9b09a0313342b1b3c5e3a3d8d9541e",
+    "@S087.c88_b1": "b63e93a3462c05cff11c9127cd0185e32bba593d",
+    "@S087.c56_c1": "703fefda88b42b238016208338fb5daf34cb6376",
+    "@S087.c56_c2": "2c39b5548f085791a4edfef5955a07e3b34f56ba"
+  },
+  "commit_labels": {
+    "S087.F": "c16a9ae0282e580c07cd21a152f862af5d4b5758",
+    "S087.b1": "b2eef6445e2678f91e4f49d1b46a7bc9ba447556",
+    "S087.c20_b0": "94d60be63fc260a14959b86088198f6aec5a54dc",
+    "S087.c20_b1": "87f6657331d46840f1bd009aff23c43ec8642635",
+    "S087.c20_b2": "b754bece9a3d9bc0729b2cffdad2893c6553f730",
+    "S087.c20_t1": "d0d77bff537dc251a282bd9ca3ae4da9fd75cfed",
+    "S087.c20_t2": "952ea78f131a2daf53adde62bd85981a36a5464d",
+    "S087.c20_u1": "37d4b517965d9f0d9c5f0729f4c0841a85567eed",
+    "S087.c53_c1": "4130f11e53965fea13a069bad5659beff6d911fc",
+    "S087.c53_c2": "f411a6a11fb7a2c43f4119b1c278d9dddf635e52",
+    "S087.c53_c3": "c5aa0ad7e53ec77675e86de8488d734ee2f0f21f",
+    "S087.c53_n1": "cf65adb4e905a5657ea7738da15cf9ca6dfc170c",
+    "S087.c53_n2": "1414708a7605b6c2c0fa67c34d2040696c7414f7",
+    "S087.c53_t1": "6283bde8e94aa0148804b9d10fdf9dfe016b76ab",
+    "S087.c56_c1": "20ee60a1a228426e9d6d7b95d625024a58eebfef",
+    "S087.c56_c2": "51e7da6cb30bcefc33f7ddee8e041c442daf9c47",
+    "S087.c56_t1": "2b987b61c12c2e1c9cb7cc433d3691084849a70e",
+    "S087.c57_c1": "6d6f21f071509ab0da67f815c17d5550593dd1c1",
+    "S087.c57_c2": "a9255e7cd83208f463f7a338384d2ba945295e4e",
+    "S087.c57_t1": "06f13c6589d39ea564aecbac3c4358c97b046a0c",
+    "S087.c88_b1": "08c2f4e79b10bb7b1f9fcf031404a166491c7722",
+    "S087.c88_t1": "ce801ae8315ee825efcb256297189a996620a9e8",
+    "S087.t1": "513894e673fb77b02f95bd0a5b19560967dcc5ed"
+  }
+}
