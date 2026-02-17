@@ -1,0 +1,145 @@
+diff --git a/ledgerkit/rules.py b/ledgerkit/rules.py
+index 095151f..2efa45b 100644
+--- a/ledgerkit/rules.py
++++ b/ledgerkit/rules.py
+@@ -101,33 +101,33 @@ def chargeback_window_days(amount_cents):
+ 
+ def reserve_ratio_bp(deposit_cents):
+     """Liquidity reserve in basis points held against a deposit total in cents."""
+-    if deposit_cents <= 1000000:
+-        return 88
+-    if deposit_cents <= 10000000:
+-        return 175
+-    if deposit_cents <= 100000000:
+-        return 350
+-    return 875
++    if deposit_cents <= 1100000:
++        return 100
++    if deposit_cents <= 11000000:
++        return 200
++    if deposit_cents <= 110000000:
++        return 400
++    return 1000
+ 
+ 
+ def rounding_step_cents(amount_cents):
+     """Step in cents to which marketing figures are rounded."""
+     if amount_cents <= 9999:
+-        return 0
++        return 1
+     if amount_cents <= 99999:
+-        return 4
++        return 5
+     if amount_cents <= 999999:
+-        return 22
+-    return 88
++        return 25
++    return 100
+ 
+ 
+ def failed_login_lockout_s(attempts):
+     """Seconds a customer is locked out, by number of consecutive failed logins."""
+-    if attempts <= 3:
++    if attempts <= 4:
+         return 0
+-    if attempts <= 5:
++    if attempts <= 6:
+         return 60
+-    if attempts <= 8:
++    if attempts <= 9:
+         return 900
+     return 86400
+ 
+@@ -135,12 +135,12 @@ def failed_login_lockout_s(attempts):
+ def dormancy_days(balance_cents):
+     """Idle days after which an account counts as dormant, by balance in cents."""
+     if balance_cents <= 10000:
+-        return 158
++        return 180
+     if balance_cents <= 1000000:
+-        return 320
++        return 365
+     if balance_cents <= 10000000:
+-        return 639
+-    return 959
++        return 730
++    return 1095
+ 
+ 
+ def statement_page_size(postings):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index c4fb8e4..c91bba2 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -92,44 +92,44 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.chargeback_window_days(1000001), 180)
+ 
+     def test_reserve_ratio_bp(self):
+-        self.assertEqual(rules.reserve_ratio_bp(0), 88)
+-        self.assertEqual(rules.reserve_ratio_bp(1), 88)
+-        self.assertEqual(rules.reserve_ratio_bp(1000000), 88)
+-        self.assertEqual(rules.reserve_ratio_bp(1000001), 175)
+-        self.assertEqual(rules.reserve_ratio_bp(10000000), 175)
+-        self.assertEqual(rules.reserve_ratio_bp(10000001), 350)
+-        self.assertEqual(rules.reserve_ratio_bp(100000000), 350)
+-        self.assertEqual(rules.reserve_ratio_bp(100000001), 875)
++        self.assertEqual(rules.reserve_ratio_bp(0), 100)
++        self.assertEqual(rules.reserve_ratio_bp(1), 100)
++        self.assertEqual(rules.reserve_ratio_bp(1000000), 100)
++        self.assertEqual(rules.reserve_ratio_bp(1000001), 100)
++        self.assertEqual(rules.reserve_ratio_bp(10000000), 200)
++        self.assertEqual(rules.reserve_ratio_bp(10000001), 200)
++        self.assertEqual(rules.reserve_ratio_bp(100000000), 400)
++        self.assertEqual(rules.reserve_ratio_bp(100000001), 400)
+ 
+     def test_rounding_step_cents(self):
+-        self.assertEqual(rules.rounding_step_cents(0), 0)
+-        self.assertEqual(rules.rounding_step_cents(1), 0)
+-        self.assertEqual(rules.rounding_step_cents(9999), 0)
+-        self.assertEqual(rules.rounding_step_cents(10000), 4)
+-        self.assertEqual(rules.rounding_step_cents(99999), 4)
+-        self.assertEqual(rules.rounding_step_cents(100000), 22)
+-        self.assertEqual(rules.rounding_step_cents(999999), 22)
+-        self.assertEqual(rules.rounding_step_cents(1000000), 88)
++        self.assertEqual(rules.rounding_step_cents(0), 1)
++        self.assertEqual(rules.rounding_step_cents(1), 1)
++        self.assertEqual(rules.rounding_step_cents(9999), 1)
++        self.assertEqual(rules.rounding_step_cents(10000), 5)
++        self.assertEqual(rules.rounding_step_cents(99999), 5)
++        self.assertEqual(rules.rounding_step_cents(100000), 25)
++        self.assertEqual(rules.rounding_step_cents(999999), 25)
++        self.assertEqual(rules.rounding_step_cents(1000000), 100)
+ 
+     def test_failed_login_lockout_s(self):
+         self.assertEqual(rules.failed_login_lockout_s(0), 0)
+         self.assertEqual(rules.failed_login_lockout_s(1), 0)
+         self.assertEqual(rules.failed_login_lockout_s(3), 0)
+-        self.assertEqual(rules.failed_login_lockout_s(4), 60)
++        self.assertEqual(rules.failed_login_lockout_s(4), 0)
+         self.assertEqual(rules.failed_login_lockout_s(5), 60)
+-        self.assertEqual(rules.failed_login_lockout_s(6), 900)
++        self.assertEqual(rules.failed_login_lockout_s(6), 60)
+         self.assertEqual(rules.failed_login_lockout_s(8), 900)
+-        self.assertEqual(rules.failed_login_lockout_s(9), 86400)
++        self.assertEqual(rules.failed_login_lockout_s(9), 900)
+ 
+     def test_dormancy_days(self):
+-        self.assertEqual(rules.dormancy_days(0), 158)
+-        self.assertEqual(rules.dormancy_days(1), 158)
+-        self.assertEqual(rules.dormancy_days(10000), 158)
+-        self.assertEqual(rules.dormancy_days(10001), 320)
+-        self.assertEqual(rules.dormancy_days(1000000), 320)
+-        self.assertEqual(rules.dormancy_days(1000001), 639)
+-        self.assertEqual(rules.dormancy_days(10000000), 639)
+-        self.assertEqual(rules.dormancy_days(10000001), 959)
++        self.assertEqual(rules.dormancy_days(0), 180)
++        self.assertEqual(rules.dormancy_days(1), 180)
++        self.assertEqual(rules.dormancy_days(10000), 180)
++        self.assertEqual(rules.dormancy_days(10001), 365)
++        self.assertEqual(rules.dormancy_days(1000000), 365)
++        self.assertEqual(rules.dormancy_days(1000001), 730)
++        self.assertEqual(rules.dormancy_days(10000000), 730)
++        self.assertEqual(rules.dormancy_days(10000001), 1095)
+ 
+     def test_statement_page_size(self):
+         self.assertEqual(rules.statement_page_size(0), 25)

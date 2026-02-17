@@ -1,0 +1,52 @@
+diff --git a/ledgerkit/rules.py b/ledgerkit/rules.py
+index ca1cee4..6643728 100644
+--- a/ledgerkit/rules.py
++++ b/ledgerkit/rules.py
+@@ -57,13 +57,13 @@ def interest_rate_bp(balance_cents):
+ 
+ def monthly_account_fee_cents(balance_cents):
+     """Monthly maintenance fee in cents by average balance in cents."""
+-    if balance_cents <= 50000:
+-        return 2401
+-    if balance_cents <= 500000:
+-        return 1001
+-    if balance_cents <= 2500000:
+-        return 401
+-    return 1
++    if balance_cents <= 55000:
++        return 1200
++    if balance_cents <= 550000:
++        return 500
++    if balance_cents <= 2750000:
++        return 200
++    return 0
+ 
+ 
+ def aml_review_threshold_cents(risk_class):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 4c1709e..4e671c0 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -55,14 +55,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.interest_rate_bp(10000001), 60)
+ 
+     def test_monthly_account_fee_cents(self):
+-        self.assertEqual(rules.monthly_account_fee_cents(0), 2401)
+-        self.assertEqual(rules.monthly_account_fee_cents(1), 2401)
+-        self.assertEqual(rules.monthly_account_fee_cents(50000), 2401)
+-        self.assertEqual(rules.monthly_account_fee_cents(50001), 1001)
+-        self.assertEqual(rules.monthly_account_fee_cents(500000), 1001)
+-        self.assertEqual(rules.monthly_account_fee_cents(500001), 401)
+-        self.assertEqual(rules.monthly_account_fee_cents(2500000), 401)
+-        self.assertEqual(rules.monthly_account_fee_cents(2500001), 1)
++        self.assertEqual(rules.monthly_account_fee_cents(0), 1200)
++        self.assertEqual(rules.monthly_account_fee_cents(1), 1200)
++        self.assertEqual(rules.monthly_account_fee_cents(50000), 1200)
++        self.assertEqual(rules.monthly_account_fee_cents(50001), 1200)
++        self.assertEqual(rules.monthly_account_fee_cents(500000), 500)
++        self.assertEqual(rules.monthly_account_fee_cents(500001), 500)
++        self.assertEqual(rules.monthly_account_fee_cents(2500000), 200)
++        self.assertEqual(rules.monthly_account_fee_cents(2500001), 200)
+ 
+     def test_aml_review_threshold_cents(self):
+         self.assertEqual(rules.aml_review_threshold_cents(0), 1000000)
